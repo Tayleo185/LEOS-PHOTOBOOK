@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102439"><meta name="description" content="LEOS L&L Logistics private photo-powered lease purchase bookkeeping.">
+<title>LEOS PhotoBooks 5.0 | Supabase Cloud Load + Receipt Tracker</title>
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAD8klEQVR4nO3dP05UURiH4YsxoaZwCSYUFhQWVrAANkBN7wKsqa1tCLYm1sZY2ltQ2LkSOosxxjADDvM7f+F5anUu57zznXshg3sHh8cL7OpZ7wtgbgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIi8rz3Bfxxfb7f+xLmc3R10/sSlr2On8oQTUG9YuoQkG7qaZ9R04Ck00bLjNoFpJ7G2mTUIqBt0hnhfnAuW74hay9s9YDu/zp1U0THRa4b0F1fmG5quCejegteMaCNX490amv8pq0VkHr6arb+VX6UoZ7uNq52jQfh8hNo/Sql00uDd3LhCaSeoTSYQ34a/8jVfgOXDMj4GdP6LhQcQsUCUs/I6jVU6whTzxNRJiA/KB1fpSFUZQIZP2Oa5huJPB0FAnJ+zSvfu/ITyPk1suK74wgjIiAiaUC3DlHn1/hu7VF4G2QCEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREJFR/quDh3r96uXXy4v7/8ynL9/fXnx4HK87LBOIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiMz6Sza3cXZ6cnZ6svNff/f+4+XnbxO9bhcmEBEBEREQEQERERARAREREBEBEZn1G4k/fv568ebs6bzusEwgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAio3wq4/p8v/clTObo6qb3JSzLCAFJZzerdeuekSOMSOeAjJ9Q9wU0gYgIiEjngLrfA86u+wKaQET6P8av3kPdbwan0332rPQPaGWQ5eChHGFEBEREQEQERERARAoH5Gl8fGX3KA3I4/fswh10hBEREJHyAbkNGlnx3SkQkNugeeV7V+UIM4TGVGNfygRkCM2oyK7Vuok2hEZTaUeKBWQIzaXUflV8jDeExlFvL0oGtB61hkawvgsFj4vq30jUUF9V61mKB7Tx4jTUS4OVLz+BNDSIjWte/FmnyhGmoe7a1LMsy97B4XHxf3TlrmI88FfVeNkrBrRoqK17Zny9Ba8b0PK/k0tJRXRc5OoBLdvd/SjpoQZZ1RYBrbiJbqzNe7JdQIuGWmk5zpsGtCKjetrfCXQI6C8lFdTrJrJnQP8S0w5GePIYJSAm5WM9RAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARH4DLVL6UcdEXW0AAAAASUVORK5CYII="><meta name="application-name" content="LEOS PhotoBooks"><meta name="apple-mobile-web-app-capable" content="yes"><style>
+:root{--ink:#102439;--navy:#11283e;--orange:#d97935;--orange2:#f59a54;--bg:#f6f7f8;--muted:#718093;--line:#e4e9ed;--pale:#eaf0f6;--white:#fff;--green:#1b8a68;--red:#aa4040}*{box-sizing:border-box}html{font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg)}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}.app-wrap{max-width:860px;margin:auto;min-height:100dvh;background:var(--bg)}.topbar{height:88px;background:var(--navy);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 25px;border-bottom:3px solid var(--orange)}.identity{display:flex;gap:12px;align-items:center}.brand-mark{width:47px;height:47px;flex:0 0 auto;border:2px solid var(--orange);border-radius:11px;display:grid;place-items:center;color:#f8d3b4;font-size:16px;font-weight:900;letter-spacing:-2px}.eyebrow{font-size:12px;font-weight:850;letter-spacing:.095em;line-height:1.5}.brand-sub{font-size:9px;letter-spacing:.16em;color:#bfccd7;font-weight:850}.orange-dot{color:var(--orange2);font-size:9px}.icon-btn{width:39px;height:39px;border:1px solid #506274;background:none;color:white;border-radius:11px;display:grid;place-items:center}.icon-btn svg{width:22px;height:22px}.view{display:none;padding:27px 23px 120px}.view.active{display:block}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-bottom:23px}.kicker{font-size:10px;letter-spacing:.17em;font-weight:900;color:var(--orange);margin:0 0 6px;text-transform:uppercase}.section-heading h1{font-size:27px;letter-spacing:-.06em;margin:0;line-height:1.05;font-weight:820}.month-select,.simple-select{color:var(--ink);border:1px solid var(--line);background:var(--white);border-radius:10px;padding:9px 9px;max-width:143px;font-size:12px;font-weight:650}.hero-card{position:relative;overflow:hidden;border-radius:19px;background:linear-gradient(125deg,#10263b,#183851);color:#fff;padding:21px 23px 20px;box-shadow:0 10px 22px #1024391b}.hero-top,.hero-bottom{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.hero-label{font-size:11px;font-weight:800;letter-spacing:.09em}.hero-sub{font-size:10px;letter-spacing:0;font-weight:500;color:#aebfcd}.hero-symbol{color:#ffb070;font-size:29px;font-weight:300}.hero-amount{font-size:43px;line-height:1.35;letter-spacing:-.055em;font-weight:850;position:relative;z-index:1;margin:13px 0 8px;overflow-wrap:anywhere}.hero-bottom{font-size:10px;color:#bfd0db;gap:12px}.hero-tag{border:1px solid #996e53;color:#ffd1ad;padding:7px;border-radius:7px;font-size:9px;white-space:nowrap;font-weight:800;letter-spacing:.035em}.hero-decoration{position:absolute;width:240px;height:240px;border-radius:50%;border:1px solid #38506a;right:-122px;bottom:-150px;box-shadow:0 0 0 55px #193a50a5,0 0 0 110px #25465b6b;pointer-events:none}.metrics{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric-card{background:white;border:1px solid var(--line);border-radius:14px;padding:17px 15px;min-width:0}.metric-card p{font-size:12px;color:#617287;font-weight:700;margin:0 0 9px}.metric-card strong{font-size:23px;letter-spacing:-.045em;display:block;overflow-wrap:anywhere}.metric-card small{display:block;font-size:10px;margin-top:7px;color:#8b95a0}.scan-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;box-shadow:0 7px 18px #10243908}.scan-copy{display:flex;align-items:center;gap:12px}.scan-icon{height:49px;width:49px;display:grid;place-items:center;border-radius:13px;background:#fff1e6;color:#bc672a;font-size:25px}.scan-copy h2{margin:0 0 5px;font-size:18px;letter-spacing:-.035em}.scan-copy p{font-size:12px;line-height:1.55;color:#69788a;margin:0}.scan-actions{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin:18px 0 0}.btn{border:0;border-radius:10px;padding:14px 15px;font-size:13px;font-weight:850;transition:filter .15s}.btn:active{filter:brightness(.95)}.btn.primary{background:var(--orange);color:#fff}.btn.light{color:#253b52;background:#edf1f5}.btn.light.bordered{border:1px solid var(--line)}.btn span{font-size:18px;margin-right:5px}.scan-note{margin:12px 0 0;font-size:10px;text-align:center;color:#8592a2}.list-section{margin-top:25px}.row-between{display:flex;justify-content:space-between;align-items:center;gap:12px}.list-section h2{font-size:17px;letter-spacing:-.035em;margin:0}.link-action{border:0;background:transparent;color:var(--orange);font-size:12px;font-weight:780}.record-card{border:1px solid var(--line);border-radius:13px;background:white;display:flex;align-items:center;gap:11px;text-align:left;padding:14px 13px;width:100%;margin-top:9px;color:var(--ink)}.record-symbol{height:37px;width:37px;flex:0 0 37px;display:grid;place-items:center;border-radius:10px;background:#e9f0f6;font-size:19px;color:#3b627d}.record-symbol.fuel{background:#eaf5ef;color:#218765}.record-symbol.expense,.record-symbol.fee{background:#fff0e4;color:#bb702f}.record-symbol.draw{background:#f3ebfa;color:#7556a9}.record-body{min-width:0;flex:1}.record-title{font-size:12px;font-weight:820;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.record-sub{margin-top:5px;color:#8793a0;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.record-money{text-align:right;font-size:14px;white-space:nowrap;font-weight:840;flex:0 0 auto}.record-money small{font-weight:500;display:block;font-size:10px;color:#9b9fa5;margin-top:6px}.status{padding:3px 6px;border-radius:5px;font-size:9px;font-weight:790;display:inline-block}.status.scheduled{background:#f4e9db;color:#995c24}.status.completed{background:#e9f1fc;color:#39659e}.status.paid{background:#def4e7;color:#24714a}.hint{display:flex;gap:9px;margin-top:19px;font-size:11px;line-height:1.6;color:#798799}.hint>span:first-child{font-size:17px;color:var(--orange)}.bottom-nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);max-width:860px;width:100%;background:#fff;box-shadow:0 -5px 24px #14243a16;border-top:1px solid var(--line);padding:6px 12px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1.15fr 1fr 1fr;align-items:center}.nav-btn{border:0;background:none;color:#8691a1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:4px;font-size:10px;font-weight:700}.nav-btn.active{color:var(--orange)}.nav-icon{font-size:25px;font-weight:400;line-height:1}.nav-scan{width:59px;height:59px;background:var(--orange);color:white;border:none;border-radius:17px;font-size:36px;justify-self:center;display:grid;place-items:center;margin-top:-29px;box-shadow:0 6px 18px #d9793577}.small-btn{font-size:12px;background:var(--navy);color:#fff;border:0;border-radius:9px;padding:10px 12px;white-space:nowrap;font-weight:780}.filter-row{display:flex;gap:8px;overflow:auto;margin:-4px 0 21px}.filter{border:1px solid var(--line);border-radius:99px;background:#fff;padding:9px 14px;color:#788696;font-size:12px;font-weight:760}.filter.active{border-color:var(--navy);color:white;background:var(--navy)}.empty-state{padding:40px 23px;border:1px dashed #cdd6de;border-radius:13px;text-align:center;color:#7e8b99;margin:12px 0;background:#fff}.empty-state .empty-icon{font-size:32px;margin-bottom:10px}.empty-state h3{color:var(--ink);font-size:14px;margin:0 0 6px}.empty-state p{font-size:12px;line-height:1.6;margin:0}.records-top{margin-bottom:15px}.muted{color:#8793a0;font-size:11px}.outline-wide{border:1px dashed #b7c5d2;background:white;border-radius:12px;padding:14px 12px;width:100%;margin:14px 0;color:#35526e;font-weight:770;font-size:12px}.report-paper{background:white;border:1px solid var(--line);border-radius:10px;padding:24px 19px;box-shadow:0 4px 15px #1024390b}.report-brand{font-size:19px;letter-spacing:-.045em;font-weight:900}.report-heading{font-size:10px;letter-spacing:.065em;color:var(--orange);font-weight:880;margin:4px 0 20px}.report-kpis{background:#edf2f7;border-bottom:2px solid var(--orange);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:16px 12px;margin-bottom:25px}.report-kpis small{font-size:8px;line-height:1.5;color:#678095;font-weight:780;display:block}.report-kpis strong{font-size:17px;margin-top:6px;display:block;overflow-wrap:anywhere}.report-paper h3{font-size:11px;letter-spacing:.04em;border-bottom:3px solid var(--navy);padding-bottom:10px;margin:24px 0 5px}.report-line{display:flex;justify-content:space-between;align-items:center;gap:9px;font-size:12px;padding:11px 7px;border-bottom:1px solid #e9edf1}.report-line:nth-child(even){background:#f5f8fa}.report-line strong{white-space:nowrap}.report-line.highlight{background:#e8f1f7;font-weight:850}.report-line.important{background:#fef1e7;font-weight:850;border-bottom:2px solid var(--orange)}.fineprint{margin:15px 0 0;line-height:1.55;font-size:10px;color:#87929c}.settings-panel{background:white;border:1px solid var(--line);padding:19px;border-radius:14px;margin:14px 0}.settings-panel h2{font-size:16px;margin:0 0 16px}.settings-panel p{line-height:1.6;color:#65778b;font-size:12px}.settings-grid,.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.settings-grid label,.form-grid label{font-size:11px;color:#607187;font-weight:780;display:flex;flex-direction:column;gap:6px}.settings-grid input,.form-grid input,.form-grid textarea,.form-grid select{padding:12px 10px;border:1px solid #d4dfe6;background:#fff;border-radius:8px;color:#152b40;min-width:0;outline-offset:2px;font-size:13px;width:100%}.settings-grid input:focus,.form-grid input:focus,.form-grid textarea:focus{outline:2px solid #e5ac7a}.small-disclaimer{font-size:10px!important;color:#8b95a0!important}.vertical-buttons{display:grid;gap:9px}.scan-overlay{position:fixed;inset:0;z-index:50;background:#102439bc;display:flex;align-items:center;justify-content:center;padding:18px}.hidden{display:none!important}.scan-progress-card{background:#fff;border-radius:18px;padding:33px 25px;width:min(360px,100%);text-align:center}.scanner-ring{color:var(--orange);font-size:60px;line-height:1}.scan-progress-card h2{font-size:19px;margin:17px 0 7px}.scan-progress-card p{font-size:12px;color:#718093;line-height:1.5}.progress-track{height:6px;background:#edf0f4;border-radius:20px;margin:22px 0;overflow:hidden}.progress-track>div{background:var(--orange);height:100%;width:5%;transition:width .3s}.text-button{background:none;border:0;color:#768698;font-size:12px}.record-dialog{padding:0;border:0;border-radius:16px;box-shadow:0 25px 85px #09192d75;max-width:560px;width:calc(100% - 24px);max-height:88dvh;color:var(--ink)}.record-dialog::backdrop{background:#06192db8}.record-dialog form{display:flex;flex-direction:column;max-height:88dvh}.dialog-head{padding:20px 22px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.dialog-head h2{margin:0;font-size:20px}.x-btn{color:#35485d;border-color:#dce5ea;font-size:27px}.dialog-scroll{padding:18px 21px;overflow-y:auto}.form-grid .wide{grid-column:span 2}.scan-explain{background:#f0f7f3;color:#22764e;border-radius:9px;padding:11px;font-size:12px;margin-bottom:13px;line-height:1.5}#previewPhoto img{max-height:150px;width:100%;object-fit:contain;border-radius:8px;background:#edf1f6;margin-bottom:15px}#ocrText{font-family:ui-monospace,monospace;font-size:10px;white-space:pre-wrap;overflow-wrap:anywhere;color:#5b6b7c;max-height:150px;overflow:auto}.ocr-details{margin-top:14px;font-size:11px;color:#69788b}.dialog-foot{border-top:1px solid var(--line);padding:13px 21px;display:flex;justify-content:space-between;gap:10px}.delete-btn{background:none;color:var(--red);border:0;font-size:11px;font-weight:700}.toast{position:fixed;bottom:92px;left:50%;z-index:90;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#182b3e;color:#fff;border-radius:11px;padding:14px 18px;box-shadow:0 10px 22px #14243933;font-size:12px;font-weight:700;max-width:min(550px,calc(100% - 30px));text-align:center;transition:all .25s}.toast.visible{transform:translate(-50%,0);opacity:1}@media(min-width:660px){.view{padding:38px 42px 125px}.section-heading h1{font-size:34px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-card strong{font-size:19px}.hero-amount{font-size:55px}.hero-card{padding:27px 30px}.topbar{padding:0 42px}.scan-actions{max-width:380px}.report-paper{padding:30px 34px}}@media(max-width:365px){.brand-sub{font-size:8px}.eyebrow{font-size:10px}.view{padding:22px 13px 115px}.hero-amount{font-size:38px}.report-kpis strong{font-size:14px}.metric-card{padding:12px}.metric-card strong{font-size:20px}}
+
+/* Cloud account and home-screen install UI */
+.cloud-panel{border:1px solid #d7e5ee;background:linear-gradient(145deg,#fff,#f7fbff)}
+.cloud-badge{display:inline-block;padding:5px 9px;border-radius:50px;color:#915c24;background:#fff2e1;font-size:10px;font-weight:800;letter-spacing:1px}
+.cloud-status{font-size:13px;color:#51677d;font-weight:650;background:#edf2f8;border-radius:10px;padding:10px 12px}
+.cloud-status[data-tone="ok"]{color:#145e44;background:#e4f6ed}
+.cloud-status[data-tone="warn"]{color:#9a5914;background:#fff1d8}
+.cloud-status[data-tone="error"]{color:#a02d30;background:#fff0ef}
+.cloud-label{display:block;margin:10px 0;font-size:12px;font-weight:650;color:#334e66}
+.cloud-label input{display:block;width:100%;padding:12px;border-radius:9px;margin-top:5px;border:1px solid #d2dce5;background:#fff;font-size:16px;color:#102439}
+.cloud-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.cloud-actions .btn{flex:1 1 135px}
+.cloud-panel .text-button{margin:8px 0}
+
+/* v3: load photo register and review */
+.load-photo-actions{display:flex;gap:13px;flex-wrap:wrap;justify-content:space-between;align-items:center;background:#edf3f7;border:1px solid #d8e6ef;border-radius:16px;padding:17px 16px;margin-bottom:15px}
+.load-photo-actions strong{display:block;color:#11283e;font-size:15px}.load-photo-actions small{display:block;color:#64758b;line-height:1.45;max-width:370px;margin-top:4px;font-size:12px}
+.load-photo-actions .scan-actions{margin:0;gap:6px;flex-wrap:wrap}.load-photo-actions .btn{font-size:12px;padding:12px 15px}
+.collection-summary{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:-4px 0 22px}.collection-summary>div{background:white;border:1px solid #e4e9ed;padding:16px 13px;border-radius:13px}.collection-summary span{display:block;color:#718093;font-size:11px}.collection-summary strong{display:block;font-size:21px;letter-spacing:-.04em;margin-top:5px;color:#11283e}
+.collection-summary>div:nth-child(2) strong{color:#b77237}
+.record-docs{font-size:10px;color:#79879b;display:block;margin-top:5px;line-height:1.3}
+.pay-preview{background:#e8f3ed;border:1px solid #cde5d5;border-radius:12px;padding:12px!important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:7px 0}
+.pay-preview div small{display:block;font-size:10px;color:#687c72}.pay-preview div strong{display:block;font-size:15px;white-space:nowrap;letter-spacing:-.04em;margin-top:3px}.pay-preview div:nth-child(2) strong{color:#177953}.pay-preview p{grid-column:1/-1;color:#667669;margin:0;font-size:11px}
+.scan-type-box{display:block;background:#fff3e6;padding:12px;border:1px solid #f0caa7;border-radius:12px;font-weight:700;color:#764316;font-size:12px;margin:10px 0}.scan-type-box select{width:100%;margin-top:8px;border:1px solid #ead0b5;border-radius:8px;padding:9px;color:#11283e;background:white}
+.document-history{font-size:11px;color:#5a6b80;margin:8px 0}.document-history ul{margin:5px 0;padding-left:17px}.document-history li{padding:2px 0}
+@media(max-width:560px){.load-photo-actions .scan-actions{width:100%}.load-photo-actions .scan-actions .btn{flex:1}.pay-preview div strong{font-size:13px}}
+
+/* Version 4: reconciliation & actual photo vault */
+.recover-panel{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#fff8f1;border:1px solid #f0d5b8;border-radius:15px;padding:15px 16px;margin:8px 0 18px}
+.recover-panel strong{display:block;font-size:13px;color:#804c24}.recover-panel p{margin:5px 0 0;color:#8b705c;font-size:11px;line-height:1.5}
+.recover-panel .btn{flex:0 0 auto;padding:11px 12px}
+.receipt-vault{margin:25px 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.receipt-vault h2{margin:0 0 4px;font-size:20px}.receipt-vault small{font-size:11px;color:#6d7d8c}
+.receipt-vault .kicker{margin-bottom:3px}
+.vault-card{display:flex;width:100%;align-items:center;gap:12px;text-align:left;background:#f8fafb;border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:10px;color:var(--ink)}
+.vault-card span:nth-child(2){flex:1;min-width:0}.vault-card strong{font-size:12px;display:block;overflow-wrap:anywhere}.vault-card small{display:block;margin-top:4px}
+.vault-icon{font-size:25px;color:#d97935}.vault-empty{background:#f7f9fb;border:1px dashed #d9e2eb;border-radius:12px;padding:15px;margin-top:15px}.vault-empty strong{font-size:12px}.vault-empty p{font-size:11px;line-height:1.55;color:#617287;margin:7px 0 0}
+.vault-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.vault-actions .btn{font-size:11px;padding:12px 7px}
+@media(max-width:520px){.recover-panel{display:block}.recover-panel .btn{width:100%;margin-top:11px}}
+
+</style>
+</head>
+<body>
+<div class="app-wrap">
+<header class="topbar">
+  <div class="identity"><div class="brand-mark"><span>LL</span></div><div><div class="eyebrow">LEOS L&L LOGISTICS LLC</div><div class="brand-sub">PHOTOBOOKS <span class="orange-dot">●</span> LEASE PURCHASE</div></div></div>
+  <button class="icon-btn" id="topSettings" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4.5"/></svg></button>
+</header>
+<main>
+<section class="view active" id="view-home" aria-label="Dashboard">
+  <div class="section-heading"><div><p class="kicker">OPERATIONS OVERVIEW</p><h1>You're in control.</h1></div><select id="monthSelect" class="month-select" aria-label="Reporting month"></select></div>
+  <div class="hero-card"><div class="hero-top"><span class="hero-label">OPERATING PROFIT <span class="hero-sub">• Recorded to date</span></span><span class="hero-symbol">↗</span></div><div class="hero-amount" id="heroProfit">$0.00</div><div class="hero-bottom"><span id="heroContext">After logged fuel, expenses & charged fees</span><span class="hero-tag">88% LOAD PAY</span></div><div class="hero-decoration"></div></div>
+  <div class="metrics"><div class="metric-card"><p>Earned 88% share</p><strong id="metricShare">$0.00</strong><small id="metricLoads">0 completed loads</small></div><div class="metric-card"><p>Fuel + expenses</p><strong id="metricCosts">$0.00</strong><small>Excludes carrier 12% share</small></div><div class="metric-card"><p>Tax reserve target</p><strong id="metricTax">$0.00</strong><small>LA 3% + federal budget</small></div><div class="metric-card"><p>Scheduled load pay</p><strong id="metricPending">$0.00</strong><small>Not yet earned</small></div></div>
+  <div class="scan-card"><div class="scan-copy"><div class="scan-icon">▣</div><div><h2>Scan a document</h2><p>Photograph a rate confirmation, delivered POD or settlement. Review the suggested changes and save.</p></div></div><div class="scan-actions"><button id="takePhoto" class="btn primary"><span>◎</span> Take a photo</button><button id="uploadPhoto" class="btn light">Upload image</button></div><p class="scan-note">Rate confirmations · Signed delivery proof · Settlements · Fuel · Receipts</p></div>
+  <div class="collection-summary" aria-label="Payment tracking"><div><span>Loads marked paid</span><strong id="metricPaid">$0.00</strong></div><div><span>Completed, unpaid</span><strong id="metricUnpaid">$0.00</strong></div></div>
+  <div class="list-section"><div class="row-between"><h2>Recent activity</h2><button class="link-action" data-nav="records">See all →</button></div><div id="recentRecords"></div></div>
+  <div class="hint"><span>ⓘ</span> <span>Scheduled loads are projections. Completed and paid loads count as earned. Settlements and owner draws aren't counted twice as income or expenses.</span></div>
+</section>
+<section class="view" id="view-loads" aria-label="Loads"><div class="section-heading"><div><p class="kicker">FREIGHT REVENUE</p><h1>Your loads</h1></div><button class="small-btn" id="addLoad">+ Add load</button></div>
+  <div class="recover-panel"><div><strong>November loads are included</strong><p>Q3832964 ($2,550) and PATX024973 ($2,100). If either is missing from your older app storage, repair it without deleting other records.</p></div><button id="recoverLoadsBtn" class="btn light bordered">Restore missing loads</button></div>
+  <div class="load-photo-actions"><div><strong>Scan to add or finish a load</strong><small>Photo reader matches reference numbers and proposes the next status for review.</small></div><div class="scan-actions"><button class="btn primary" id="loadCamera">◎ Take photo</button><button class="btn light" id="loadUpload">Upload photo</button></div></div><div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="scheduled">Scheduled</button><button class="filter" data-filter="completed">Completed</button><button class="filter" data-filter="paid">Paid</button></div><div id="loadList"></div></section>
+<section class="view" id="view-records" aria-label="Records"><div class="section-heading"><div><p class="kicker">FUEL, FEES & EXPENSES</p><h1>All records</h1></div><button class="small-btn" id="addRecord">+ Add</button></div><div class="row-between records-top"><span class="muted">Tap any record to edit it.</span><select id="recordFilter" class="simple-select"><option value="all">All types</option><option value="fuel">Fuel & DEF</option><option value="expense">Expenses</option><option value="fee">Weekly fees</option><option value="settlement">Settlements</option><option value="draw">Owner draws</option><option value="taxPayment">Tax payments</option></select></div><div id="recordList"></div>
+  <section class="receipt-vault"><div class="row-between"><div><p class="kicker">DOCUMENT LIBRARY</p><h2>Receipt Vault</h2><small id="receiptCount">Checking uploaded photos…</small></div></div><div id="receiptVault"></div><div class="vault-actions"><button id="receiptUploadBtn" class="btn primary">Upload receipt photos</button><button id="receiptRestoreBtn" class="btn light bordered">Import older app backup</button></div><p class="small-disclaimer">Actual receipt images appear here only after they are saved to this app or recovered from a local PhotoBooks backup. Uploaded photos are never counted twice as load revenue.</p></section>
+  <button class="outline-wide" id="chargeWeek">+ Post weekly lease deductions</button></section>
+<section class="view" id="view-reports" aria-label="Reports"><div class="section-heading"><div><p class="kicker">EVERY DOLLAR ACCOUNTED FOR</p><h1>Monthly report</h1></div><button class="small-btn" id="exportCsv">Export CSV</button></div><div class="report-paper"><div class="report-brand">LEOS L&L LOGISTICS LLC</div><div class="report-heading">LEASE-PURCHASE OPERATIONS · <span id="reportMonth"></span></div><div class="report-kpis"><div><small>NET OPERATING PROFIT</small><strong id="reportProfit">$0.00</strong></div><div><small>COMPLETED MILES</small><strong id="reportMiles">0</strong></div><div><small>RECOMMENDED TAX RESERVE</small><strong id="reportTax">$0.00</strong></div></div><h3>INCOME & DEDUCTIONS</h3><div id="reportLines"></div><h3>TAX RESERVES · PLANNING ONLY</h3><div id="taxLines"></div><p class="fineprint">State reserve: 3% of positive logged operating profit (simplified Louisiana planning estimate). Federal/SE savings percentage is an adjustable budget target, not a tax calculation. Filing status, other income, deductions and legal entity tax election can change the actual tax due.</p></div><button class="outline-wide" id="backupFromReports">Download complete backup (with photos)</button></section>
+<section class="view" id="view-settings" aria-label="Settings"><div class="section-heading"><div><p class="kicker">YOUR BUSINESS RULES</p><h1>Settings & backups</h1></div></div><div class="settings-panel"><h2>Pay and tax targets</h2><div class="settings-grid"><label>Load share %<input id="s-share" type="number" min="0" max="100" step="0.1" inputmode="decimal"></label><label>Louisiana state reserve %<input id="s-la" type="number" min="0" max="30" step="0.1" inputmode="decimal"></label><label>Federal + SE savings %<input id="s-fed" type="number" min="0" max="60" step="0.5" inputmode="decimal"></label><label>Optional fuel surcharge $/gallon<input id="s-fsc" type="number" min="0" max="10" step="0.01" inputmode="decimal"></label></div><p class="small-disclaimer">Tax targets are voluntary savings estimates. No taxes are withheld or paid by this app.</p></div><div class="settings-panel"><h2>Weekly lease costs</h2><div class="settings-grid"><label>Truck lease + insurance ($)<input id="s-lease" type="number" min="0" step="0.01" inputmode="decimal"></label><label>Trailer rent ($)<input id="s-trailer" type="number" min="0" step="0.01" inputmode="decimal"></label><label>ELD support ($)<input id="s-eld" type="number" min="0" step="0.01" inputmode="decimal"></label></div><p class="small-disclaimer">These aren't deducted until you post them under Records. Enter only what was actually charged.</p></div><div class="settings-panel cloud-panel"><div class="row-between"><h2>Secure cloud backup</h2><span class="cloud-badge">SUPABASE</span></div><p id="cloudStatus" class="cloud-status" role="status" aria-live="polite">Checking cloud setup…</p><p id="cloudSetupHint" class="small-disclaimer">Configure your Supabase project to activate private cloud sync.</p>
+ <div id="cloudGuest"><label class="cloud-label">Account email<input id="cloudLoginEmail" type="email" autocomplete="email" placeholder="you@example.com"></label><label class="cloud-label">Password<input id="cloudLoginPassword" type="password" autocomplete="current-password" placeholder="Your account password"></label><div class="cloud-actions"><button class="btn primary" id="cloudSignIn">Sign in</button><button class="btn light bordered" id="cloudSignUp">Create account</button></div><button id="cloudReset" class="text-button">Forgot your password?</button></div>
+ <div id="cloudMember" class="hidden"><p class="small-disclaimer">Account: <strong id="cloudEmail"></strong></p><div id="cloudVerify" class="hidden"><p>Check your email for a verification link before you start cloud backup.</p><div class="cloud-actions"><button id="cloudRefresh" class="btn primary">I've verified my email</button><button id="cloudResend" class="btn light bordered">Resend link</button></div></div><div id="cloudActive" class="hidden"><p>Your verified account keeps loads, expenses, settings and receipt images private. Updates sync across signed-in devices.</p><button id="cloudImportLocal" class="btn light bordered">Import this phone's existing records to cloud</button><p class="small-disclaimer">Local records will not move automatically. Import once and review totals for duplicates.</p></div><button class="text-button" id="cloudSignOut">Sign out</button></div>
+ </div><div class="settings-panel"><h2>Restore your original loads</h2><p>If an older app shows only one load or none, this non-destructive repair restores the missing November dispatch entries without overwriting edited pay, photos or receipt records.</p><button id="recoverFromSettings" class="btn light bordered">Restore missing November loads</button></div><div class="settings-panel"><h2>Backups and exports</h2><p>When signed in, records and photos are stored privately in Supabase. The JSON export contains bookkeeping records and photo references, <strong>not copies of cloud photo files</strong>. Keep receipt backups separately. When not signed in, local photos are included in the JSON backup.</p><div class="vertical-buttons"><button class="btn primary" id="backupBtn">Download accounting backup (JSON)</button><button class="btn light bordered" id="restoreBtn">Import older PhotoBooks backup + receipt photos</button><button class="btn light bordered" id="exportAllCsv">Export records as CSV</button></div></div><div class="settings-panel"><h2>About this version</h2><p>Version 5.0 starts November 1, 2026 and repairs missing starter loads while preserving existing records. It includes two scheduled starter loads ($2,550 and $2,100). September and October income is <strong>not</strong> imported. Photo recognition runs on your device using an OCR library downloaded when scanning; reviewed scans can match the same load by its pickup, load or delivery reference number; cloud-connected records, extracted text and compressed receipt images sync to your private Supabase account.</p><p class="small-disclaimer">Important: review every scanned rate and delivery record before it changes your books. A signed POD suggests a completed delivery, while a settlement statement alone does not verify that a bank deposit arrived. When the cloud is configured, signed-in verified accounts synchronize through Supabase. Offline or unverified accounts remain local-only; no cloud backup occurs until synchronization is active.</p></div></section>
+</main>
+<nav class="bottom-nav" aria-label="Main navigation">
+<button data-nav="home" class="nav-btn active"><span class="nav-icon">▦</span><span>Home</span></button>
+<button data-nav="loads" class="nav-btn"><span class="nav-icon">▱</span><span>Loads</span></button>
+<button id="scanNav" class="nav-scan" aria-label="Scan a photo"><span>◎</span></button>
+<button data-nav="records" class="nav-btn"><span class="nav-icon">≡</span><span>Records</span></button>
+<button data-nav="reports" class="nav-btn"><span class="nav-icon">▤</span><span>Reports</span></button>
+</nav>
+</div>
+<input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+<input id="galleryInput" type="file" accept="image/*" multiple hidden>
+<input id="restoreInput" type="file" accept="application/json,.json" hidden>
+<div id="scanOverlay" class="scan-overlay hidden" role="status" aria-live="polite"><div class="scan-progress-card"><div class="scanner-ring">◎</div><h2 id="scanStatus">Reading photo…</h2><p id="scanSub">Looking for totals, load numbers and dates</p><div class="progress-track"><div id="scanBar"></div></div><button id="stopScan" class="text-button">Cancel</button></div></div>
+<dialog id="recordDialog" class="record-dialog"><form method="dialog" id="recordForm"><div class="dialog-head"><div><p class="kicker" id="dialogKicker">REVIEW</p><h2 id="dialogTitle">Record details</h2></div><button type="button" id="closeDialog" class="icon-btn x-btn" aria-label="Close">×</button></div><div class="dialog-scroll"><div id="scanExplain" class="scan-explain hidden"></div><label id="scanDocTypeWrap" class="scan-type-box hidden">What does this photo show?<select id="scanDocType"><option value="confirmation">Rate confirmation / dispatch</option><option value="pod">Signed proof of delivery (completed)</option><option value="bol">Bill of lading (not necessarily delivered)</option><option value="settlement">Settlement statement (payment not verified)</option><option value="fuel">Fuel receipt</option><option value="expense">Other expense</option></select></label><label class="scan-type-box hidden" id="linkLoadWrap">Couldn’t match automatically? Select an existing load<select id="linkLoadSelect"><option value="">Choose a load to attach this photo</option></select></label><div id="previewPhoto"></div><div class="form-grid"><label>Record type<select name="kind" id="f-kind"><option value="load">Load confirmation</option><option value="fuel">Fuel / DEF</option><option value="expense">Business expense</option><option value="fee">Weekly deduction</option><option value="settlement">Settlement / deposit</option><option value="draw">Owner draw</option><option value="taxPayment">Tax payment</option></select></label><label>Date<input type="date" name="date" required></label><label class="wide">Description / company / merchant<input name="description" placeholder="e.g. Pilot fuel receipt"></label><label>Amount ($)<input type="number" name="amount" step="0.01" min="0" inputmode="decimal" required></label><label class="f-load">Load # / pickup reference<input name="loadNo" placeholder="Q3832964 / PATX024973"></label><label class="f-load">Status<select name="status"><option value="scheduled">Scheduled</option><option value="completed">Completed</option><option value="paid">Paid</option></select></label><label class="f-load">Miles<input type="number" name="miles" min="0" step="1" inputmode="numeric"></label><label class="f-load wide">Pickup / origin<input name="origin" placeholder="Sussex, WI"></label><label class="f-load wide">Delivery / destination<input name="destination" placeholder="Shreveport, LA"></label>
+  <label class="f-load">Pickup date<input name="pickupDate" type="date"></label><label class="f-load">Delivery date<input name="deliveryDate" type="date"></label>
+  <label class="f-load">Pickup appointment / FCFS<input name="pickupWindow" placeholder="9:00 AM appointment"></label><label class="f-load">Delivery appointment / FCFS<input name="deliveryWindow" placeholder="FCFS 8:00 AM"></label>
+  <label class="f-load wide">Pickup reference numbers<input name="pickupRefs" placeholder="PATX024973, 110484"></label><label class="f-load wide">Delivery reference numbers<input name="deliveryRefs" placeholder="119140, 110484"></label>
+  <div id="payPreview" class="pay-preview f-load wide"><div><small>Gross load</small><strong id="reviewGross">$0</strong></div><div><small>Your 88% (adjustable)</small><strong id="reviewDriver">$0</strong></div><div><small>Carrier 12%</small><strong id="reviewCarrier">$0</strong></div><p id="reviewPayStatus"></p></div><label class="f-fuel">Fuel gallons<input name="gallons" type="number" min="0" step="0.001" inputmode="decimal"></label><label class="f-fuel">Price per gallon ($)<input name="unitPrice" type="number" min="0" step="0.001" inputmode="decimal"></label><label class="f-fuel">Confirmed fuel reimbursement / surcharge ($)<input name="credit" type="number" min="0" step="0.01" inputmode="decimal"></label><div class="f-fuel wide" style="margin-top:-6px"><button type="button" id="estimateCredit" class="text-button" style="color:#ad6a38;text-align:left;padding:0">Use confirmed $/gallon rate from Settings</button></div><label class="f-fuel">Fuel paid by<select name="paidBy"><option value="company">Company account / own money</option><option value="carrier">Carrier fuel card (settlement deduction)</option></select></label><label class="wide">Notes (optional)<textarea name="notes" rows="2" placeholder="Additional details, receipt #, etc."></textarea></label></div><div id="docHistory" class="document-history"></div><details class="ocr-details" id="ocrDetails"><summary>Text read from photo</summary><pre id="ocrText"></pre></details></div><div class="dialog-foot"><button type="button" class="delete-btn" id="deleteRecord">Delete</button><button type="submit" class="btn primary" id="saveRecord">Save record</button></div></form></dialog>
+<div id="toast" class="toast" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+/* Public Supabase project URL and publishable client key. No secret keys. */
+window.LEOS_SUPABASE_CONFIG = {
+ url: 'https://utlqlskomucibxddvdfl.supabase.co',
+ anonKey: 'sb_publishable_bsV-BSaWgXxmAOzTY9wKvg_cZPlCcaY'
+};
+
+/* LEOS PhotoBooks v5 — Supabase cloud sync (auth, row-level security, private receipt storage).
+   Only configure the public project URL and publishable/anon key in supabase-config.js.
+   IMPORTANT: Run SUPABASE_SETUP.sql to enable per-user security before using live data. */
+(() => {
+ 'use strict';
+ const $=s=>document.querySelector(s);
+ const TABLE='leos_records', SETTINGS='leos_settings', BUCKET='leos-receipts';
+ let client=null, currentUser=null, authSubscription=null, changeChannel=null, remoteIds=new Set(), hooks={},lastRequest=0;
+ const api={configured:false,isActive:()=>!!currentUser,uid:()=>currentUser?.id||null};
+ function status(msg,tone='muted'){const node=$('#cloudStatus');if(node){node.textContent=msg;node.dataset.tone=tone;}}
+ function setText(id,msg){const node=$(id);if(node)node.textContent=msg;}
+ function showSignedIn(signed,user){
+   $('#cloudGuest').classList.toggle('hidden',signed);
+   $('#cloudMember').classList.toggle('hidden',!signed);
+   $('#cloudVerify').classList.toggle('hidden',!signed || !!user?.email_confirmed_at);
+   $('#cloudActive').classList.toggle('hidden',!signed || !user?.email_confirmed_at);
+   if(user)setText('#cloudEmail',user.email||'Account');
+ }
+ function friendlyError(e){let m=String(e?.message||e||'Cloud operation could not be completed.');
+   if(/invalid login credentials/i.test(m))return 'Email or password was not recognized.';
+   if(/email not confirmed/i.test(m))return 'Verify your email before signing in.';
+   if(/row.level security|permission denied|not authorized|403/i.test(m))return 'Access denied. Check that SUPABASE_SETUP.sql was installed and you are signed in.';
+   if(/bucket not found/i.test(m))return 'Receipt bucket missing. Run the SQL setup to create the private bucket.';
+   if(/failed to fetch|network/i.test(m))return 'Cannot contact Supabase. Check your internet and project connection.';
+   return m;
+ }
+ function errorText(e){const m=friendlyError(e);status(m,'error');hooks.onError?.(m);}
+ function assertOnline(){if(!navigator.onLine)throw new Error('Internet access is required to sync changes. Existing local records remain available while signed out.');}
+ function root(){if(!currentUser)throw new Error('Sign in with a verified email to use cloud sync.');return currentUser.id;}
+ async function remoteRecords(){
+   if(!currentUser)return;
+   const req=++lastRequest,uid=currentUser.id;
+   const {data,error}=await client.from(TABLE).select('id,payload').eq('user_id',uid).order('updated_at',{ascending:false}).limit(5000);
+   if(error)throw error;
+   if(req!==lastRequest || uid!==currentUser?.id)return;
+   const received=(data||[]).map(item=>item.payload).filter(x=>x&&x.id);
+   remoteIds=new Set((data||[]).map(item=>item.id));
+   hooks.onRecords?.(received);
+   const btn=$('#cloudImportLocal');if(btn)btn.disabled=false;
+   status('Supabase connected • Records synchronized','ok');
+ }
+ async function remoteSettings(){
+   if(!currentUser)return;
+   const {data,error}=await client.from(SETTINGS).select('payload').eq('user_id',currentUser.id).maybeSingle();
+   if(error)throw error;
+   hooks.onSettings?.(data?.payload||null);
+ }
+ function refs(record){
+   const s=[record?.loadNo,record?.pickupRefs,record?.deliveryRefs].filter(Boolean).join(' ');
+   return (s.toUpperCase().match(/\b[A-Z]*\d[A-Z0-9-]{3,}\b/g)||[]).map(x=>x.replace(/[^A-Z0-9]/g,''));
+ }
+ async function installStarterLoads(uid){
+   const {data:marker,error:markerErr}=await client.from(SETTINGS).select('starter_migrated').eq('user_id',uid).maybeSingle();
+   if(markerErr)throw markerErr;
+   if(marker?.starter_migrated)return;
+   const {data,error}=await client.from(TABLE).select('id,payload').eq('user_id',uid);
+   if(error)throw error;
+   const existing=(data||[]).map(x=>x.payload).filter(x=>x?.kind==='load');
+   const present=new Set(existing.flatMap(refs));
+   for(const key of ['Q3832964','PATX024973']){
+     const starter=hooks.getStarterRecord?.(key);
+     if(!starter||refs(starter).some(x=>present.has(x)))continue;
+     const {error:saveError}=await client.from(TABLE).upsert({user_id:uid,id:starter.id,payload:starter},{onConflict:'user_id,id'});
+     if(saveError)throw saveError;
+     for(const id of refs(starter))present.add(id);
+   }
+   const {error:markErr}=await client.from(SETTINGS).upsert({user_id:uid,starter_migrated:true},{onConflict:'user_id'});
+   if(markErr)throw markErr;
+ }
+ function clearSubscription(){
+   if(changeChannel&&client)client.removeChannel(changeChannel);
+   changeChannel=null;remoteIds=new Set();lastRequest++;
+ }
+ async function handleUser(user){
+   clearSubscription();currentUser=null;
+   if(!user){showSignedIn(false,null);status('Local-only mode • No cloud backup');hooks.onInactive?.();return;}
+   showSignedIn(true,user);
+   if(!user.email_confirmed_at){status('Verify your email before cloud sync can begin','warn');hooks.onInactive?.();return;}
+   currentUser=user;
+   status('Connecting to your private Supabase records…');
+   $('#cloudImportLocal').disabled=true;
+   try{
+     await installStarterLoads(user.id);
+     await remoteSettings();
+     await remoteRecords();
+     changeChannel=client.channel('leos-records-'+user.id)
+       .on('postgres_changes',{event:'*',schema:'public',table:TABLE,filter:'user_id=eq.'+user.id},()=>remoteRecords().catch(errorText))
+       .on('postgres_changes',{event:'*',schema:'public',table:SETTINGS,filter:'user_id=eq.'+user.id},()=>remoteSettings().catch(errorText))
+       .subscribe();
+   }catch(e){errorText(e);}
+ }
+ async function requireSuccess(promise){const r=await promise;if(r.error)throw r.error;return r.data;}
+ api.init=async callbacks=>{
+   hooks=callbacks||{};
+   const cfg=window.LEOS_SUPABASE_CONFIG;
+   if(!cfg?.url||!cfg?.anonKey||!window.supabase?.createClient){
+     showSignedIn(false,null);$('#cloudGuest').classList.add('hidden');
+     status('Cloud not configured • This version currently saves on this device');
+     setText('#cloudSetupHint','Connect a Supabase project, apply the database/security setup, and host this app on HTTPS to activate private synchronization.');return;
+   }
+   try{
+     client=window.supabase.createClient(cfg.url,cfg.anonKey,{
+       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+     });api.configured=true;$('#cloudSetupHint').classList.add('hidden');
+     client.auth.onAuthStateChange((_event,session)=>{
+       // Supabase recommends not awaiting additional SDK calls inside auth callback.
+       setTimeout(()=>handleUser(session?.user||null).catch(errorText),0);
+     });
+     const session=await client.auth.getSession();if(session.error)throw session.error;
+     await handleUser(session.data.session?.user||null);
+     $('#cloudSignIn').onclick=async()=>{try{
+       status('Signing in…');
+       await requireSuccess(client.auth.signInWithPassword({email:$('#cloudLoginEmail').value.trim(),password:$('#cloudLoginPassword').value}));
+     }catch(e){errorText(e);}};
+     $('#cloudSignUp').onclick=async()=>{try{
+       status('Creating account…');
+       const data=await requireSuccess(client.auth.signUp({email:$('#cloudLoginEmail').value.trim(),password:$('#cloudLoginPassword').value}));
+       status(data.session?'Account created. Connecting…':'Check your email for the confirmation link, then sign in.','warn');
+     }catch(e){errorText(e);}};
+     $('#cloudReset').onclick=async()=>{try{
+       const email=$('#cloudLoginEmail').value.trim();if(!email)throw new Error('Enter your email before requesting a password reset.');
+       await requireSuccess(client.auth.resetPasswordForEmail(email));status('Password reset email requested.','ok');
+     }catch(e){errorText(e);}};
+     $('#cloudResend').onclick=async()=>{try{
+       await requireSuccess(client.auth.resend({type:'signup',email:$('#cloudLoginEmail').value.trim()||currentUser?.email}));
+       status('Verification message requested.','ok');
+     }catch(e){errorText(e);}};
+     $('#cloudRefresh').onclick=async()=>{try{
+       const {data,error}=await client.auth.getUser();if(error)throw error;await handleUser(data.user);
+     }catch(e){errorText(e);}};
+     $('#cloudSignOut').onclick=()=>client.auth.signOut().catch(errorText);
+     $('#cloudImportLocal').onclick=async()=>{
+       if(!currentUser)return;
+       const local=await hooks.getLocalRecords?.()||[];
+       // Detect duplicated loads by their reference keys as well as record ID.
+       const {data,error}=await client.from(TABLE).select('id,payload').eq('user_id',currentUser.id);
+       if(error){errorText(error);return;}
+       const originals=(data||[]).map(x=>x.payload);
+       const ids=new Set((data||[]).map(x=>x.id));
+       const cloudRefs=new Set(originals.filter(r=>r.kind==='load').flatMap(refs));
+       const additional=local.filter(r=>r?.id&&(!r.date||r.date>='2026-11-01')&&!ids.has(r.id)&&!(r.kind==='load'&&refs(r).some(x=>cloudRefs.has(x))));
+       if(!additional.length){status('No additional local records to import.','ok');return;}
+       if(!confirm(`Import ${additional.length} local record(s), including any saved receipt images? Matching load references were excluded to prevent duplicate pay.`))return;
+       let done=0;
+       for(const rec of additional){try{await api.saveRecord(rec);done++;}catch(e){errorText(e);break;}}
+       status(`Imported ${done}/${additional.length} local records.`,done===additional.length?'ok':'warn');
+       if(done===additional.length){
+         if(confirm('Also import this device\'s pay and tax settings?'))await api.saveSettings(hooks.getLocalSettings?.());
+         // Never auto-delete local records; user retains another copy until manually backed up.
+       }
+     };
+     document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentUser)remoteRecords().catch(()=>{});});
+   }catch(e){errorText(e);}
+ };
+ function imageBytes(dataUrl){const comma=dataUrl.indexOf(',');const mime=dataUrl.slice(5,comma).split(';')[0]||'image/jpeg';const raw=atob(dataUrl.slice(comma+1));const bytes=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);return {bytes,mime};}
+ api.saveRecord=async rec=>{
+   assertOnline();const uid=root();const cloned={...rec};const photos=[];
+   for(const item of rec.photos||[]){
+     if(typeof item==='string'&&item.startsWith('data:image/')){
+       const {bytes,mime}=imageBytes(item);
+       if(bytes.length>5*1024*1024)throw new Error('Receipt photo is over 5 MB; compress the image before uploading.');
+       const id=typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+       const safeRecord=String(rec.id).replace(/[^A-Za-z0-9_-]/g,'_');
+       const ext=mime==='image/png'?'png':'jpg';
+       const path=`${uid}/${safeRecord}/${id}.${ext}`;
+       await requireSuccess(client.storage.from(BUCKET).upload(path,bytes,{contentType:mime,upsert:false}));
+       photos.push('supabase:'+path);
+     }else if(typeof item==='string'&&item.startsWith(`supabase:${uid}/`)){photos.push(item);}
+   }
+   cloned.photos=photos;delete cloned.anchor;
+   if(typeof cloned.rawText==='string')cloned.rawText=cloned.rawText.slice(0,22000);
+   await requireSuccess(client.from(TABLE).upsert({user_id:uid,id:String(rec.id),payload:cloned},{onConflict:'user_id,id'}));
+   await remoteRecords();
+ };
+ api.deleteRecord=async rec=>{
+   assertOnline();const uid=root();
+   await requireSuccess(client.from(TABLE).delete().eq('user_id',uid).eq('id',String(rec.id)));
+   for(const item of rec.photos||[]){
+     if(typeof item==='string'&&item.startsWith(`supabase:${uid}/`)){
+       const path=item.slice('supabase:'.length);
+       client.storage.from(BUCKET).remove([path]).then(({error})=>{if(error)console.warn('Photo cleanup failed',error.message);});
+     }
+   }
+   await remoteRecords();
+ };
+ api.saveSettings=async prefs=>{
+   if(!currentUser)return;
+   assertOnline();const uid=root();
+   await requireSuccess(client.from(SETTINGS).upsert({user_id:uid,payload:prefs||{},starter_migrated:true},{onConflict:'user_id'}));
+   await remoteSettings();
+ };
+ api.resolvePhoto=async item=>{
+   if(typeof item!=='string'||!item.startsWith('supabase:'))return item;
+   const uid=root(),path=item.slice('supabase:'.length);
+   if(!path.startsWith(uid+'/'))throw new Error('This receipt belongs to another account.');
+   const {data,error}=await client.storage.from(BUCKET).createSignedUrl(path,900);
+   if(error)throw error;return data.signedUrl;
+ };
+ window.LEOSCloud=api;
+})();
+
+/* LEOS PhotoBooks v5.0 — private, on-device trucking ledger + photo OCR */
+(() => {
+'use strict';
+const DB_NAME='leos-photobooks-v1', STORE='records', SETTINGS_KEY='leos-settings-v1', FALLBACK_KEY='leos-records-fallback-v1', SEED_KEY='leos-seed-initialized-v1', LOADS_MIGRATION='leos-full-starter-load-repair-v4';
+const defaults={share:88,la:3,fed:25,fsc:0.25,lease:1000,trailer:250,eld:60};
+const $=(selector,root=document)=>root.querySelector(selector);
+const $$=(selector,root=document)=>Array.from(root.querySelectorAll(selector));
+const n=v=>Math.max(0,Number(v)||0), round=v=>Math.round((Number(v)||0)*100)/100;
+const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(v)||0);
+const integer=v=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(Number(v)||0);
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isoDate=(date=new Date())=>`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+const newId=()=>typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():'r'+Date.now().toString(36)+Math.random().toString(36).slice(2);
+let records=[],db=null,settings={...defaults},selectedMonth='2026-11',currentTab='home',loadFilter='all',pending=null,worker=null,cancelScan=false,toastTimer,photoQueue=[],scanningPhoto=false;
+const KIND_NAMES={load:'Load',fuel:'Fuel / DEF',expense:'Expense',fee:'Weekly fee',settlement:'Settlement',draw:'Owner draw',taxPayment:'Tax payment'};
+const KIND_ICONS={load:'▱',fuel:'⛽',expense:'▤',fee:'◷',settlement:'⇄',draw:'↗',taxPayment:'◈'};
+function readSettings(){try{const v=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');settings={...defaults,...v};}catch{settings={...defaults};}}
+function saveSettings(){
+ if(window.LEOSCloud?.isActive()){
+   LEOSCloud.saveSettings(settings).catch(e=>toast('Settings were not synchronized: '+(e.message||'Network error')));
+ }else{try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));}catch{}}
+};
+async function initDB(){try{db=await new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE,{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}catch(e){console.warn('IndexedDB unavailable; local fallback',e);db=null;}}
+async function loadStored(){if(!db){try{return JSON.parse(localStorage.getItem(FALLBACK_KEY)||'[]');}catch{return [];}}return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error);});}
+async function persistRecord(rec){if(!db){const index=records.findIndex(r=>r.id===rec.id);if(index>=0)records[index]=rec;else records.unshift(rec);try{localStorage.setItem(FALLBACK_KEY,JSON.stringify(records));}catch{toast('Browser storage unavailable. Use a hosted HTTPS version and export regular backups.');}return;}return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(rec);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
+async function deleteStored(id){if(!db){records=records.filter(r=>r.id!==id);localStorage.setItem(FALLBACK_KEY,JSON.stringify(records));return;}return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
+function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),4600);}
+function seedLoad(){return{id:'initial-Q3832964',kind:'load',date:'2026-11-03',pickupDate:'2026-11-01',deliveryDate:'2026-11-03',pickupWindow:'9:00 AM appointment',deliveryWindow:'6:00 AM appointment',pickupRefs:'Q3832964',deliveryRefs:'Q3832964',description:'Quad/Graphics → USPS Shreveport',amount:2550,loadNo:'Q3832964',origin:'N63W23075 Main St, Sussex, WI 53089',destination:'2400 Texas Ave, Shreveport, LA 71102',status:'scheduled',miles:930,notes:'Pickup: QUAD/GRAPHICS INC (SUSSEX WI), 9:00 AM appt November 1. Delivery: SHREVEPORT LA - USPS, 6:00 AM appt November 3. No driver loading or unloading. Dispatch reference Q3832964. Miles are provisional; confirm dispatched/actual miles. Details entered from the dispatch message; no original rate-confirmation photo attached.',source:'user_dispatch',createdAt:'2026-11-01T13:00:00',photos:[],documents:[]};}
+function seedSecondLoad(){return{id:'initial-PATX024973',kind:'load',date:'2026-11-05',pickupDate:'2026-11-03',deliveryDate:'2026-11-05',pickupWindow:'FCFS 8:00 AM–6:00 PM',deliveryWindow:'FCFS 8:00 AM (as provided)',pickupRefs:'PATX024973, 110484',deliveryRefs:'119140, 110484',description:'Abernathy Warehouse → GPI Sturgis',amount:2100,loadNo:'PATX024973',origin:'1 Jim Walter Dr, c/o Abernathy Warehouse, Texarkana, AR 71854',destination:'400 Magnolia Ave, Sturgis, MI 49091',status:'scheduled',miles:900,notes:'Pickup: Abernathy Warehouse, Nov 3 FCFS 8:00 AM-6:00 PM. Delivery: GPI STURGIS, Nov 5 FCFS 8:00 AM (end not supplied). Pickup refs PATX024973, 110484. Delivery refs 119140, 110484. Carrier load number not supplied. STRICT FACILITY: Food-grade trailer, newer than 9 years; must be on time; >1 hour late requires rescheduling. Miles provisional. Details entered from dispatch message; no original rate-confirmation photo attached.',source:'user_dispatch',createdAt:'2026-11-02T14:55:00',photos:[],documents:[]};}
+// Reconcile two November dispatch records once, even when an older app already has other records.
+// Never overwrite existing edits or photo attachments, and never re-create deliberately deleted
+// loads on subsequent launches. The manual Recover button can be used if needed.
+function hasStarterLoad(starter, pool=records){
+ const keys=new Set(loadRefs(starter));
+ return pool.some(r=>r.kind==='load'&&(r.id===starter.id||loadRefs(r).some(x=>keys.has(x))));
+}
+async function migrateStarterLoads(force=false){
+ try{if(!force&&localStorage.getItem(LOADS_MIGRATION)==='yes')return 0;}catch{}
+ let added=0;
+ for(const starter of [seedLoad(),seedSecondLoad()]){
+   if(hasStarterLoad(starter))continue;
+   await persistRecord(starter);
+   if(!records.some(x=>x.id===starter.id))records.push(starter);
+   added++;
+ }
+ try{localStorage.setItem(LOADS_MIGRATION,'yes');localStorage.setItem(SEED_KEY,'yes');}catch{}
+ return added;
+}
+async function recoverStarterLoads(){
+ const missing=[seedLoad(),seedSecondLoad()].filter(r=>!hasStarterLoad(r));
+ if(!missing.length){toast('Both November starter loads are already saved. No duplicates added.');showTab('loads');return;}
+ if(window.LEOSCloud?.isActive()){
+   if(!confirm(`Restore ${missing.length} missing starting load(s) into your private cloud account? Existing records and photos will stay untouched.`))return;
+   for(const r of missing)await LEOSCloud.saveRecord(r);
+ }else{
+   await migrateStarterLoads(true);
+   populateMonths();renderAll();
+ }
+ toast(`Restored ${missing.length} missing load(s). Existing records were preserved.`);showTab('loads');
+}
+
+async function initialize(){readSettings();await initDB();try{records=await loadStored();}catch(e){console.error(e);records=[];toast('Device storage unavailable; saving may not persist.');}
+ await migrateStarterLoads();
+ selectedMonth=isoDate().slice(0,7);if(selectedMonth<'2026-11')selectedMonth='2026-11';populateMonths();syncSettingsUI();bindEvents();renderAll();
+ if(window.LEOSCloud)await LEOSCloud.init({
+   onRecords:remote=>{records=remote;populateMonths();renderAll();},
+   onSettings:remote=>{settings={...defaults,...(remote||{})};syncSettingsUI();renderAll();},
+   onInactive:async()=>{try{records=await loadStored();readSettings();syncSettingsUI();populateMonths();renderAll();}catch(e){console.warn(e);}},
+   getStarterRecord:ref=>ref==='Q3832964'?seedLoad():ref==='PATX024973'?seedSecondLoad():null,
+   getLocalRecords:()=>loadStored(),getLocalSettings:()=>JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}'),
+   clearLocalRecords:async()=>{
+     if(db)await new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).clear();tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});
+     else localStorage.removeItem(FALLBACK_KEY);
+     localStorage.setItem(SEED_KEY,'yes');
+   },
+   onError:message=>toast(message)
+ });
+ // One-file edition: service worker is omitted; web app data is synced via Supabase.
+}
+async function saveAndRefresh(rec){
+ if(window.LEOSCloud?.isActive()){
+   await LEOSCloud.saveRecord(rec); // Real-time listener updates the dashboard and every signed-in device.
+ }else{
+   await persistRecord(rec);
+   const idx=records.findIndex(x=>x.id===rec.id);if(idx>=0)records[idx]=rec;else records.unshift(rec);
+   populateMonths();renderAll();
+ }
+}
+function sortRecords(items){return [...items].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||'').localeCompare(a.createdAt||''));}
+function inMonth(r,month){return(r.date||'').slice(0,7)===month;}
+function moneySum(rows){return round(rows.reduce((sum,r)=>sum+n(r.amount),0));}
+function calc(month){const list=records.filter(r=>inMonth(r,month));const loads=list.filter(r=>r.kind==='load');const earned=loads.filter(r=>r.status!=='scheduled');const pending=loads.filter(r=>r.status==='scheduled');const share=n(settings.share)/100;
+ const gross=moneySum(earned), earnedShare=round(gross*share), carrier=round(gross-earnedShare), projected=round(moneySum(pending)*share);
+ const fuel=moneySum(list.filter(r=>r.kind==='fuel')),expenses=moneySum(list.filter(r=>r.kind==='expense')),fees=moneySum(list.filter(r=>r.kind==='fee'));
+ const cashSettled=moneySum(list.filter(r=>r.kind==='settlement')),draws=moneySum(list.filter(r=>r.kind==='draw')),taxPaid=moneySum(list.filter(r=>r.kind==='taxPayment'));
+ const credits=round(list.filter(r=>r.kind==='fuel').reduce((total,r)=>total+n(r.credit),0));
+ const profit=round(earnedShare+credits-fuel-expenses-fees);const stateReserve=round(Math.max(0,profit)*n(settings.la)/100);const federalReserve=round(Math.max(0,profit)*n(settings.fed)/100);const taxes=round(stateReserve+federalReserve);
+ const miles=earned.reduce((sum,r)=>sum+n(r.miles),0),gallons=list.filter(r=>r.kind==='fuel').reduce((sum,r)=>sum+n(r.gallons),0);
+ const paidLoadPay=round(moneySum(loads.filter(r=>r.status==='paid'))*share);
+ const completedUnpaid=round(moneySum(loads.filter(r=>r.status==='completed'))*share);
+ return{list,loads,earned,pending,gross,earnedShare,carrier,projected,fuel,expenses,fees,cashSettled,draws,taxPaid,credits,profit,stateReserve,federalReserve,taxes,miles,gallons,paidLoadPay,completedUnpaid};
+}
+function populateMonths(){const months=new Set(['2026-11',isoDate().slice(0,7),selectedMonth]);records.forEach(r=>{if(r.date)months.add(r.date.slice(0,7));});const select=$('#monthSelect');select.innerHTML=[...months].filter(x=>x>='2026-11').sort().reverse().map(m=>`<option value="${m}" ${selectedMonth===m?'selected':''}>${new Date(m+'-02T12:00:00').toLocaleDateString('en-US',{month:'short',year:'numeric'})}</option>`).join('');}
+function renderAll(){renderHome();renderLoads();renderRecords();renderReceiptVault();renderReports();}
+function renderHome(){const d=calc(selectedMonth);$('#heroProfit').textContent=money(d.profit);$('#heroProfit').style.color=d.profit<0?'#ffbaba':'';$('#metricShare').textContent=money(d.earnedShare);$('#metricCosts').textContent=money(d.fuel+d.expenses+d.fees);$('#metricTax').textContent=money(d.taxes);$('#metricPending').textContent=money(d.projected);$('#metricPaid').textContent=money(d.paidLoadPay);$('#metricUnpaid').textContent=money(d.completedUnpaid);$('#metricLoads').textContent=`${d.earned.length} completed / paid loads`;
+ const recent=sortRecords(records.filter(r=>inMonth(r,selectedMonth))).slice(0,5);$('#recentRecords').innerHTML=recent.length?recent.map(recordCard).join(''):emptyState('No activity yet','Photograph your next receipt or rate confirmation to begin.');}
+function recordCard(r){const isLoad=r.kind==='load';const amount=isLoad?n(r.amount)*n(settings.share)/100:n(r.amount);const minus=['fuel','expense','fee','draw','taxPayment'].includes(r.kind);const moneyLabel=(minus?'−':'')+money(amount);const foot=isLoad?`${esc(r.loadNo||'No load #')} · ${esc(r.origin||'Origin TBD')} → ${esc(r.destination||'Destination TBD')}`:`${esc(KIND_NAMES[r.kind]||r.kind)} · ${esc(r.date)}`;
+ const title=esc(r.description||KIND_NAMES[r.kind]||'Record');const docs=isLoad?`<span class="record-docs">${(r.documents||[]).length} document(s) · Gross ${money(r.amount)}${r.miles?' · '+integer(r.miles)+' mi':''}</span>`:'';return `<button class="record-card" data-edit="${esc(r.id)}"><span class="record-symbol ${esc(r.kind)}">${KIND_ICONS[r.kind]||'▦'}</span><span class="record-body"><span class="record-title" style="display:block">${title}</span><span class="record-sub" style="display:block">${foot}</span>${docs}</span><span class="record-money">${moneyLabel}${isLoad?`<small><span class="status ${esc(r.status||'scheduled')}">${esc(r.status||'scheduled')}</span></small>`:`<small>${r.source==='photo'?'● Photo':'● Recorded'}</small>`}</span></button>`;}
+function emptyState(title,message){return `<div class="empty-state"><div class="empty-icon">▣</div><h3>${esc(title)}</h3><p>${esc(message)}</p></div>`;}
+function renderLoads(){const loads=sortRecords(records.filter(r=>r.kind==='load'&&(loadFilter==='all'||(r.status||'scheduled')===loadFilter)));$('#loadList').innerHTML=loads.length?loads.map(recordCard).join(''):emptyState('No loads in this filter','Switch status or add your next rate confirmation.');$$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===loadFilter));}
+function renderRecords(){const filter=$('#recordFilter').value;const list=sortRecords(records.filter(r=>r.kind!=='load'&&(filter==='all'||(filter==='fuel'?r.kind==='fuel':r.kind===filter))));$('#recordList').innerHTML=list.length?list.map(recordCard).join(''):emptyState('No records yet','Scan a fuel receipt, or add a manual transaction.');}
+function renderReceiptVault(){
+ const withPhotos=sortRecords(records.filter(r=>(r.photos||[]).length));
+ const count=withPhotos.reduce((x,r)=>x+(r.photos||[]).length,0);
+ const summary=$('#receiptCount'),vault=$('#receiptVault');
+ if(!summary||!vault)return;
+ summary.textContent=`${count} saved photo${count===1?'':'s'} across ${withPhotos.length} record${withPhotos.length===1?'':'s'}`;
+ vault.innerHTML=withPhotos.length?withPhotos.map(r=>{
+   const kind=r.kind==='load'?'Load document':r.kind==='fuel'?'Fuel receipt':r.kind==='expense'?'Expense receipt':(KIND_NAMES[r.kind]||'Document');
+   return `<button class="vault-card" data-edit="${esc(r.id)}"><span class="vault-icon">▣</span><span><strong>${esc(kind)} · ${esc(r.loadNo||r.description||'Record')}</strong><small>${esc(r.date||'Date not set')} · ${(r.photos||[]).length} photo(s) · ${r.kind==='load'?money(r.amount)+' gross':money(r.amount)}</small></span><span>›</span></button>`;
+ }).join(''):'<div class="vault-empty"><strong>No original receipts have been imported yet.</strong><p>Your dispatch details and amounts are included, but actual receipt photos cannot be retrieved from a different local file or from ChatGPT automatically. Upload the photos here or restore a PhotoBooks JSON backup.</p></div>';
+}
+
+function reportLine(label,value,cls=''){return `<div class="report-line ${cls}"><span>${esc(label)}</span><strong>${money(value)}</strong></div>`;}
+function renderReports(){const d=calc(selectedMonth),label=new Date(selectedMonth+'-02T12:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'});$('#reportMonth').textContent=label.toUpperCase();$('#reportProfit').textContent=money(d.profit);$('#reportMiles').textContent=integer(d.miles);$('#reportTax').textContent=money(d.taxes);
+ $('#reportLines').innerHTML=[reportLine('Customer gross – completed loads',d.gross),reportLine(`Carrier share (${round(100-n(settings.share))}%)`,-d.carrier),reportLine(`Your load revenue (${n(settings.share)}%)`,d.earnedShare,'highlight'),reportLine('Confirmed fuel surcharge / reimbursements',d.credits),reportLine('Fuel & DEF purchases',-d.fuel),reportLine('Other operating expenses',-d.expenses),reportLine('Charged lease / trailer / ELD fees',-d.fees),reportLine('NET OPERATING PROFIT',d.profit,'important'),reportLine('Scheduled load pay (not earned)',d.projected),reportLine('Load pay marked paid (status only)',d.paidLoadPay),reportLine('Completed load pay awaiting payment',d.completedUnpaid),reportLine('Settlement / deposit amounts (memo only)',d.cashSettled),reportLine('Owner draws (not an expense)',d.draws)].join('');
+ $('#taxLines').innerHTML=[reportLine(`Louisiana reserve (${n(settings.la)}% planning)`,d.stateReserve),reportLine(`Federal + SE savings (${n(settings.fed)}% budget)`,d.federalReserve),reportLine('COMBINED SUGGESTED RESERVE',d.taxes,'highlight'),reportLine('Recorded tax payments (cash memo)',d.taxPaid),reportLine('Profit less suggested reserve',d.profit-d.taxes,'important')].join('');}
+function showTab(name){currentTab=name;$$('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+name));$$('.nav-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.nav===name));window.scrollTo({top:0,behavior:'instant'});}
+function syncSettingsUI(){for(const key of Object.keys(defaults)){const el=$('#s-'+key);if(el)el.value=settings[key];}}
+function bindEvents(){document.addEventListener('click',async e=>{const nav=e.target.closest('[data-nav]');if(nav){showTab(nav.dataset.nav);return;}const edit=e.target.closest('[data-edit]');if(edit){openRecord(records.find(r=>r.id===edit.dataset.edit));return;}});
+ $('#topSettings').onclick=()=>showTab('settings');$('#monthSelect').onchange=e=>{selectedMonth=e.target.value;renderAll();};$('#takePhoto').onclick=()=>$('#cameraInput').click();$('#scanNav').onclick=()=>$('#cameraInput').click();$('#uploadPhoto').onclick=()=>$('#galleryInput').click();
+ $('#cameraInput').onchange=e=>handlePhotos(e.target.files);$('#galleryInput').onchange=e=>handlePhotos(e.target.files);$('#loadCamera').onclick=()=>$('#cameraInput').click();$('#loadUpload').onclick=()=>$('#galleryInput').click();
+ $('#addLoad').onclick=()=>openRecord(null,'load');$('#addRecord').onclick=()=>openRecord(null,'expense');$('#recordFilter').onchange=renderRecords;
+ $$('.filter').forEach(btn=>btn.onclick=()=>{loadFilter=btn.dataset.filter;renderLoads();});
+ $('#closeDialog').onclick=()=>$('#recordDialog').close();$('#recordDialog').addEventListener('close',()=>{if(photoQueue.length)scanNextQueued();});$('#linkLoadSelect').onchange=attachUnmatchedToLoad;$('#scanDocType').onchange=()=>{if(pending&&pending.kind==='load'&&pending.scanDetected){const t=$('#scanDocType').value;const field=$('#recordForm').elements.namedItem('status');if(t==='pod'&&field.value==='scheduled')field.value='completed';if(t!=='pod'&&field.value==='completed'&&pending.scanDetected==='pod'&&pending.previousStatus==='scheduled')field.value='scheduled';updatePayPreview();}};['amount','kind','status'].forEach(k=>$('#recordForm').elements.namedItem(k)?.addEventListener('input',updatePayPreview));$('#recordDialog').addEventListener('click',e=>{if(e.target===$('#recordDialog'))$('#recordDialog').close();});$('#f-kind').onchange=adjustRecordForm;$('#recordForm').onsubmit=submitRecord;$('#deleteRecord').onclick=removeRecord;
+ $('#stopScan').onclick=()=>{cancelScan=true;$('#scanOverlay').classList.add('hidden');toast('Scanning canceled.');};
+ $('#chargeWeek').onclick=postWeeklyFees;$('#estimateCredit').onclick=()=>{const f=$('#recordForm');const gal=n(f.elements.namedItem('gallons').value);if(!gal){toast('Enter gallons first.');return;}const credit=round(gal*n(settings.fsc));if(confirm(`Apply ${money(credit)} credit using ${money(settings.fsc)} per gallon? Only do this if the carrier confirms it is payable.`)){f.elements.namedItem('credit').value=credit;}};
+ $('#recoverLoadsBtn').onclick=()=>recoverStarterLoads().catch(e=>toast('Recovery failed: '+e.message));$('#recoverFromSettings').onclick=()=>recoverStarterLoads().catch(e=>toast('Recovery failed: '+e.message));$('#receiptUploadBtn').onclick=()=>$('#galleryInput').click();$('#receiptRestoreBtn').onclick=()=>$('#restoreInput').click();
+ $('#backupBtn').onclick=exportBackup;$('#backupFromReports').onclick=exportBackup;$('#restoreBtn').onclick=()=>$('#restoreInput').click();$('#restoreInput').onchange=e=>restoreBackup(e.target.files[0]);$('#exportCsv').onclick=exportCsv;$('#exportAllCsv').onclick=exportCsv;
+ for(const key of Object.keys(defaults)){const el=$('#s-'+key);if(el)el.onchange=()=>{settings[key]=n(el.value);saveSettings();renderAll();toast('Settings saved and all totals recalculated.');};}
+}
+function adjustRecordForm(){const kind=$('#f-kind').value;$$('.f-load').forEach(el=>el.classList.toggle('hidden',kind!=='load'));$$('.f-fuel').forEach(el=>el.classList.toggle('hidden',kind!=='fuel'));updatePayPreview();}
+function updatePayPreview(){const f=$('#recordForm');const box=$('#payPreview');if(!box)return;box.classList.toggle('hidden',f.elements.namedItem('kind').value!=='load');const gross=n(f.elements.namedItem('amount').value),driver=round(gross*n(settings.share)/100);$('#reviewGross').textContent=money(gross);$('#reviewDriver').textContent=money(driver);$('#reviewCarrier').textContent=money(gross-driver);$('#reviewPayStatus').textContent=f.elements.namedItem('status').value==='scheduled'?'Projected only':f.elements.namedItem('status').value==='paid'?'Marked paid (confirm deposit)':'Earned — awaiting payment';}
+
+function openRecord(r,kind='expense',explain=''){pending=r?structuredClone(r):{id:newId(),kind,date:isoDate(),description:'',amount:0,loadNo:'',status:'scheduled',miles:0,origin:'',destination:'',pickupDate:'',deliveryDate:'',pickupWindow:'',deliveryWindow:'',pickupRefs:'',deliveryRefs:'',scanDocType:'confirmation',documents:[],gallons:0,unitPrice:0,credit:0,paidBy:'company',notes:'',source:'manual',photos:[],rawText:'',createdAt:new Date().toISOString()};
+ const f=$('#recordForm');for(const field of ['kind','date','description','amount','loadNo','status','miles','origin','destination','pickupDate','deliveryDate','pickupWindow','deliveryWindow','pickupRefs','deliveryRefs','gallons','unitPrice','credit','paidBy','notes']){const control=f.elements.namedItem(field);if(control)control.value=pending[field]??'';}$('#dialogKicker').textContent=r&&records.some(x=>x.id===r.id)?'EDIT RECORD':'REVIEW & SAVE';$('#dialogTitle').textContent=pending.source==='photo'?'Photo details':pending.kind==='load'?'Load details':'Record details';$('#deleteRecord').style.visibility=r&&records.some(x=>x.id===r.id)?'visible':'hidden';$('#scanExplain').classList.toggle('hidden',!explain);$('#scanExplain').textContent=explain;const thumb=pending.photos?.at(-1);$('#previewPhoto').textContent='';
+ if(thumb){if(thumb.startsWith('data:image/')){$('#previewPhoto').innerHTML=`<img src="${thumb}" alt="Attached receipt photo">`;}
+ else if(window.LEOSCloud?.isActive()){
+   $('#previewPhoto').textContent='Loading private receipt…';
+   LEOSCloud.resolvePhoto(thumb).then(url=>{if(pending?.id===r?.id||(!r&&pending?.photos?.includes(thumb))){$('#previewPhoto').textContent='';const img=document.createElement('img');img.src=url;img.alt='Attached receipt photo';$('#previewPhoto').appendChild(img);}}).catch(()=>{$('#previewPhoto').textContent='Receipt could not be loaded. Check your internet connection.';});
+ }}
+ $('#ocrText').textContent=pending.rawText||'No OCR text attached.';$('#scanDocType').value=pending.scanDocType||'confirmation';$('#scanDocTypeWrap').classList.toggle('hidden',!pending.scanDetected);const canLink=pending.scanDetected&&pending.kind==='settlement'&&pending.id&&!records.some(r=>r.id===pending.id);$('#linkLoadWrap').classList.toggle('hidden',!canLink);$('#linkLoadSelect').innerHTML='<option value="">Choose a load to attach this photo</option>'+sortRecords(records.filter(r=>r.kind==='load')).map(x=>`<option value="${esc(x.id)}">${esc(x.loadNo||'Unknown load')} · ${esc(x.description||'Load')} · ${money(x.amount)}</option>`).join('');$('#docHistory').innerHTML=(pending.documents||[]).length?`<strong>Saved load documents</strong><ul>${pending.documents.map(d=>`<li>${esc(d.type||'Photo')} · ${esc((d.scannedAt||'').slice(0,10))}</li>`).join('')}</ul>`:'';adjustRecordForm();$('#recordDialog').showModal();}
+function attachUnmatchedToLoad(){
+ const found=records.find(r=>r.id===$('#linkLoadSelect').value&&r.kind==='load');if(!found||!pending)return;
+ const scan=pending,docType=$('#scanDocType').value,fingerprint=documentFingerprint(scan.rawText||'');
+ if((found.documents||[]).some(d=>d.fingerprint===fingerprint)){toast('This document is already linked to that load.');return;}
+ const next={...found,photos:[...(found.photos||[]),...(scan.photos||[])].slice(-12),documents:[...(found.documents||[]),{type:docType,scannedAt:new Date().toISOString(),fingerprint,filename:'uploaded photo'}].slice(-20),rawText:scan.rawText,source:found.source||'photo',previousStatus:found.status,scanDetected:docType,scanDocType:docType};
+ if(docType==='pod'&&found.status==='scheduled')next.status='completed';
+ openRecord(next,'load',docType==='pod'?'Selected existing load. Confirm that the document is signed proof of delivery before saving Completed.':'Photo will attach to the selected existing load; saved gross load pay will not be replaced with a settlement amount.');
+}
+async function submitRecord(e){e.preventDefault();const f=$('#recordForm'),r={...pending};for(const key of ['kind','date','description','loadNo','status','origin','destination','pickupDate','deliveryDate','pickupWindow','deliveryWindow','pickupRefs','deliveryRefs','paidBy','notes'])r[key]=f.elements.namedItem(key).value.trim();for(const key of ['amount','miles','gallons','unitPrice','credit'])r[key]=n(f.elements.namedItem(key).value);r.amount=round(r.amount);r.updatedAt=new Date().toISOString();if(r.kind==='load'){r.scanDocType=$('#scanDocType').value;if(r.status==='paid'&&pending.status!=='paid'&&!confirm('Have you verified that payment was received? A settlement statement alone does not prove bank deposit.'))return;if(r.scanDocType==='pod'&&r.status==='completed'&&pending.previousStatus==='scheduled'&&!confirm('Confirm this photo proves the load was delivered?'))return;const match=matchLoadRecord(r,records.filter(x=>x.id!==r.id));if(match){toast('A load already uses that load/pickup/delivery reference. Edit the existing load instead.');return;}}if(!r.description)r.description=r.loadNo||KIND_NAMES[r.kind]||'Business record';if(r.kind==='load'&&!r.loadNo)r.loadNo='MANUAL-'+r.id.slice(-6).toUpperCase();try{await saveAndRefresh(r);$('#recordDialog').close();toast(`${KIND_NAMES[r.kind]||'Record'} saved. Totals updated.`);}catch(err){toast('Save failed: '+(err.message||'Please retry.'));}}
+async function removeRecord(){if(!pending||!records.some(r=>r.id===pending.id))return;if(!confirm('Delete this record and recalculate totals?'))return;try{
+ if(window.LEOSCloud?.isActive()){await LEOSCloud.deleteRecord(pending);}else{await deleteStored(pending.id);records=records.filter(r=>r.id!==pending.id);}
+ $('#recordDialog').close();renderAll();toast('Record deleted. Totals recalculated.');
+ }catch(e){toast('Could not delete: '+(e.message||'Please retry.'));}}
+function weekStart(date){const d=new Date(date+'T12:00:00');d.setDate(d.getDate()-(d.getDay()+6)%7);return isoDate(d);}
+async function postWeeklyFees(){const date=prompt('Which date was the weekly lease charge made? (YYYY-MM-DD)',isoDate());if(!date)return;if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(Date.parse(date+'T12:00:00'))){toast('Enter a date like 2026-11-02.');return;}const week=weekStart(date);if(records.some(r=>r.kind==='fee'&&r.week===week)){toast('Weekly fees for that week are already posted. Edit them in Records.');return;}
+ const lines=[['Truck lease + insurance',settings.lease],['Trailer rent',settings.trailer],['ELD support',settings.eld]].filter(x=>n(x[1])>0);if(!lines.length){toast('Set weekly fee amounts in Settings first.');return;}if(!confirm(`Post ${money(lines.reduce((s,x)=>s+n(x[1]),0))} in confirmed weekly deductions for week of ${week}?`))return;
+ for(const [description,amount] of lines){const r={id:newId(),kind:'fee',date,week,description,amount:n(amount),source:'manual',createdAt:new Date().toISOString(),photos:[]};try{await saveAndRefresh(r);}catch(e){toast('Weekly fee not posted: '+e.message);return;}}toast('Weekly deductions posted once. Profit recalculated.');}
+function toggleScan(show,text='',sub='',progress=0){$('#scanOverlay').classList.toggle('hidden',!show);if(show){$('#scanStatus').textContent=text;$('#scanSub').textContent=sub;$('#scanBar').style.width=progress+'%';}}
+async function compressPhoto(file){try{const url=URL.createObjectURL(file);const img=new Image();await new Promise((res,rej)=>{img.onload=res;img.onerror=rej;img.src=url;});const scale=Math.min(1,1100/Math.max(img.naturalHeight,img.naturalWidth));const canvas=document.createElement('canvas');canvas.width=Math.round(img.naturalWidth*scale);canvas.height=Math.round(img.naturalHeight*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);return canvas.toDataURL('image/jpeg',.65);}catch{return null;}}
+// Match conservatively: load/dispatch and pickup IDs, not dates or cities alone.
+function normalizeRef(v){return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,'');}
+function loadRefs(r){return [r.loadNo,r.pickupRefs,r.deliveryRefs].join(' ').toUpperCase().match(/\b[A-Z]*\d[A-Z0-9-]{3,}\b/g)?.map(normalizeRef).filter(x=>x.length>=5)||[];}
+function matchingReferenceEvidence(parsed){return [...new Set([parsed.loadNo,...(parsed.refs||[])].map(normalizeRef).filter(x=>x.length>=5))];}
+function matchLoadRecord(parsed,pool=records){const hints=matchingReferenceEvidence(parsed);if(!hints.length)return null;const matches=pool.filter(r=>r.kind==='load'&&loadRefs(r).some(x=>hints.includes(x)));return matches.length===1?matches[0]:null;}
+function chooseScanResult(parsed,text,thumb,file){
+ const fingerprint=documentFingerprint(text);
+ if(records.some(r=>(r.documents||[]).some(d=>d.fingerprint===fingerprint)||r.kind!=='load'&&r.rawText&&documentFingerprint(r.rawText)===fingerprint)){
+   toast('This same document was already saved. No duplicate was created.');return;
+ }
+ const matched=matchLoadRecord(parsed);
+ const doc={type:parsed.docType,scannedAt:new Date().toISOString(),fingerprint,filename:file.name||'camera-photo'};
+ const photo=thumb?[thumb]:[];
+ if(matched){
+   const rec={...matched,photos:[...(matched.photos||[]),...photo].slice(-12),documents:[...(matched.documents||[]),doc].slice(-20),rawText:text,source:matched.source||'photo',scanDetected:parsed.docType,scanDocType:parsed.docType,previousStatus:matched.status,ocrConfidence:parsed.ocrConfidence};
+   let message='Matched an existing load using the reference number. The photo will be attached without creating another load or duplicate pay.';
+   if(parsed.docType==='pod'){
+     if(matched.status==='scheduled')rec.status='completed';
+     message+=' Delivery proof suggests COMPLETED; confirm it was delivered before saving.';
+   }else if(parsed.docType==='bol'){message+=' Bill of lading attached. It does not automatically prove completed delivery.';
+   }else if(parsed.docType==='settlement'){
+     message+=' This looks like a settlement. Confirm payment in your bank before choosing Paid. Settlement net pay is not used to replace the gross load rate.';
+   }else if(parsed.docType==='confirmation'){
+     if(!n(matched.amount)&&n(parsed.amount)&&parsed.anchor)rec.amount=parsed.amount;
+     else if(n(matched.amount)&&n(parsed.amount)&&Math.abs(n(matched.amount)-n(parsed.amount))>1)message+=' ALERT: the scanned rate differs from your saved load amount. Review it; the saved rate has not been overwritten.';
+     if(!matched.origin&&parsed.origin)rec.origin=parsed.origin;
+     if(!matched.destination&&parsed.destination)rec.destination=parsed.destination;
+     message+=' Scheduled status and saved gross pay were preserved unless fields were missing.';
+   }
+   openRecord(rec,'load',message);return;
+ }
+ if(parsed.docType==='pod' || parsed.docType==='bol' || parsed.docType==='settlement'){
+   // Don't create a false new load from a BOL or a net settlement figure.
+   const rec={id:newId(),kind:'settlement',date:parsed.date,description:`Unmatched ${parsed.docType==='pod'?'delivery proof':parsed.docType==='bol'?'bill of lading':'settlement'} — review load ID`,amount:0,loadNo:parsed.loadNo,notes:`Unmatched document references: ${matchingReferenceEvidence(parsed).join(', ')||'None detected'}. Find the correct existing load before marking completed/paid.`,photos:photo,rawText:text,source:'photo',createdAt:new Date().toISOString(),scanDetected:parsed.docType,scanDocType:parsed.docType};
+   openRecord(rec,'settlement','This document could not be matched to exactly one load. It will be held as a document-only memo with $0 until you associate it with a load; it will NOT create new revenue.');return;
+ }
+ const rec={id:newId(),...parsed,photos:photo,rawText:text,documents:parsed.kind==='load'?[doc]:[],source:'photo',createdAt:new Date().toISOString(),scanDetected:parsed.docType,scanDocType:parsed.docType};
+ const reason=parsed.kind==='load'?'New load photo: review gross rate, pickup/delivery, mileage and references. Save to add this load; it will remain Scheduled until you confirm delivery.':'Review the extracted amount and details. Nothing is added until you tap Save record.';
+ openRecord(rec,rec.kind,reason);
+}
+// Multiple uploaded images are processed one by one. Each OCR result is reviewed before saving;
+// no scan can silently change pay, paid status, or load delivery status.
+async function handlePhotos(fileList){
+ const files=Array.from(fileList||[]).filter(f=>f.type.startsWith('image/'));
+ $('#cameraInput').value='';$('#galleryInput').value='';
+ if(!files.length){toast('Select a JPG or PNG receipt / load photo.');return;}
+ photoQueue.push(...files);
+ if(files.length>1)toast(`${files.length} photos queued; review and save each one to continue.`);
+ if(!$('#recordDialog').open)await scanNextQueued();
+}
+async function scanNextQueued(){
+ if(scanningPhoto||$('#recordDialog').open||!photoQueue.length)return;
+ scanningPhoto=true;cancelScan=false;
+ const file=photoQueue.shift();
+ toggleScan(true,'Reading your photo',`${photoQueue.length} more photo(s) queued for review`,8);
+ try{
+   if(!window.Tesseract)throw new Error('Photo reader unavailable. The picture can still be saved with manual details.');
+   if(!worker)worker=await Tesseract.createWorker('eng',1,{logger:m=>{if(m.status==='recognizing text')$('#scanBar').style.width=(35+Math.round((m.progress||0)*60))+'%';}});
+   const result=await worker.recognize(file);if(cancelScan){toggleScan(false);return;}
+   const text=result.data.text||'',confidence=Number(result.data.confidence||0);
+   if(!text.trim())throw new Error('Could not read the text. Save the photo and enter the details manually.');
+   const thumb=await compressPhoto(file),parsed=parseDocument(text,confidence);toggleScan(false);
+   chooseScanResult(parsed,text,thumb,file);
+ }catch(e){
+   toggleScan(false);
+   if(!cancelScan){
+     const thumb=await compressPhoto(file);
+     if(thumb){
+       const entry={id:newId(),kind:'expense',date:isoDate(),description:file.name||'Unreviewed receipt image',amount:0,notes:'Photo saved for review; OCR could not extract a reliable amount. Choose the correct record type and enter the amount before saving.',photos:[thumb],documents:[{type:'manual-review',filename:file.name||'photo',scannedAt:new Date().toISOString()}],source:'photo',createdAt:new Date().toISOString()};
+       openRecord(entry,'expense',String(e.message||'Unable to read')+' The original compressed photo is attached; choose its type and enter the details.');
+     }else toast('Photo could not be opened. Try JPG or PNG.');
+   }
+ }finally{
+   scanningPhoto=false;
+   if(!$('#recordDialog').open&&photoQueue.length)scanNextQueued();
+ }
+}
+function documentFingerprint(s){return String(s||'').replace(/\s/g,'').toUpperCase().slice(0,550);}
+function findMoneyInLine(line){const vals=[...String(line).matchAll(/\$\s*([\d,]+(?:\.\d{1,2})?)|(?<!\d)(\d{1,6}\.\d{2})(?!\d)/g)].map(m=>n((m[1]||m[2]).replace(/,/g,''))).filter(v=>v>.01&&v<200000);return vals;}
+function findAmount(lines,kind){const anchored=kind==='load'?[/\b(total rate|gross rate|linehaul|line haul|total charges|load pay|paying|agreed rate|rate confirmation|rate amount|carrier pay)\b/i,/\b(\brate\b|amount|total)\b/i]:kind==='fuel'?[/\b(total due|fuel total|sale total|total sale|total amount|amount paid|total)\b/i,/\b(amount|sale)\b/i]:[/\b(net settlement|settlement total|total due|grand total|total amount|total paid|amount paid|balance due|total|payment amount)\b/i,/\b(amount|subtotal)\b/i];
+ for(const regex of anchored){for(let i=0;i<lines.length;i++){if(!regex.test(lines[i]))continue;if(/\b(per\s*gallon|\/gal|gallons|miles|tax rate)\b/i.test(lines[i]))continue;const candidates=findMoneyInLine(lines[i]);if(candidates.length)return{value:Math.max(...candidates),anchor:true};const next=findMoneyInLine(lines[i+1]||'');if(next.length)return{value:Math.max(...next),anchor:true};const plain=lines[i].match(/(?:\$|\b)(?:\d{1,3}(?:,\d{3})+|\d{2,5})(?![\d\/])/g)||[];if(plain.length){const values=plain.map(x=>n(x.replace(/\D/g,''))).filter(v=>v>=20&&v<100000&&v!==2026);if(values.length)return{value:Math.max(...values),anchor:true};}}}
+ const pool=lines.flatMap(x=>findMoneyInLine(x));return{value:pool.length?Math.max(...pool):0,anchor:false};}
+function extractDate(line){const m=String(line).match(/\b(0?[1-9]|1[0-2])[\/\-.](0?[1-9]|[12]\d|3[01])[\/\-.](\d{2}|\d{4})\b/);if(m){const y=m[3].length===2?'20'+m[3]:m[3];return`${y}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`;}const alt=String(line).match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);return alt?alt[0]:null;}
+function locationNear(lines,pattern){const i=lines.findIndex(x=>pattern.test(x));if(i<0)return'';let s=lines[i].replace(/^(.*?)(?:pickup|shipper|origin|delivery|consignee|destination|drop off)(?:[^:]*)[:\s-]*/i,'').trim();if(/^\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}$/.test(s))s='';if(s.length<7){const next=lines[i+1]||'';s=/\b(pickup|delivery|total|rate)\b/i.test(next)?'':next.trim();}return s.slice(0,160);}
+function parseDocument(text,confidence){
+ const lines=text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean),combined=lines.join(' \n ');
+ const hasPOD=/\b(proof of delivery|delivery receipt|delivered|receiver signature|received by|delivery completed|signed pod|signed bill of lading)\b/i.test(combined);
+ const hasBOL=/\b(bill of lading|bol\s*#|bol number)\b/i.test(combined);
+ const hasSettlement=/\b(settlement|driver statement|weekly statement|net pay|net settlement|pay summary|remittance advice)\b/i.test(combined);
+ const hasLoad=/\b(load confirmation|rate confirmation|carrier confirmation|rate con|load number|shipper|consignee|pickup|delivery appointment|dispatch|paying)\b/i.test(combined)||/\bQ\d{7}\b/i.test(combined);
+ const hasFuel=/\b(diesel|fuel|gallons|gal\b|fueling|def fluid|pump no|truck stop|pilot travel|loves travel|love's)\b/i.test(combined);
+ const docType=hasSettlement?'settlement':hasPOD?'pod':hasBOL?'bol':hasLoad?'confirmation':hasFuel?'fuel':'expense';
+ const kind=['confirmation','pod','bol'].includes(docType)?'load':docType==='settlement'?'settlement':docType==='fuel'?'fuel':'expense';
+ const amountResult=findAmount(lines,kind);let amount=amountResult.value;
+ const dates=lines.map(extractDate).filter(Boolean),date=kind==='load'?(dates[dates.length-1]||isoDate()):(dates[0]||isoDate());
+ let loadNo='';const q=combined.match(/\bQ\d{7}\b/i);if(q)loadNo=q[0].toUpperCase();else{
+  const m=combined.match(/\b(?:load\s*(?:number|no\.?|#)|ref(?:erence)?\s*#|trip\s*#|pku\s*#|pickup\s*#)\s*[:#\s-]*([A-Z0-9-]{5,22})/i);if(m)loadNo=m[1].toUpperCase();
+ }
+ const refs=[...combined.matchAll(/\b(?:pku|pick\s*up|delv|delivery|bol|load|reference|ref|trip)\s*(?:no\.?|number|#)?\s*[:#-]\s*([A-Z0-9-]{5,22})/gi)].map(m=>m[1].toUpperCase());
+ if(q)refs.push(q[0].toUpperCase());
+ const pku=combined.match(/\bPATX\d{5,}\b/i);if(pku)refs.push(pku[0].toUpperCase());
+  let description=(lines[0]||'Scanned document').replace(/[^\w\-&.,/() ]/g,' ').trim().slice(0,84);
+ if(kind==='load')description=loadNo?`Load ${loadNo}`:'Freight load';
+ const origin=kind==='load'?locationNear(lines,/\b(pickup|shipper|origin)\b/i):'';
+ const destination=kind==='load'?locationNear(lines,/\b(delivery|consignee|destination|drop off)\b/i):'';
+ let gallons=0,unitPrice=0;
+ if(kind==='fuel'){
+  for(const line of lines){if(/\b(gallons|gal\b|volume|quantity|qty)\b/i.test(line)&&!/\b(price|per|rate|unit|cost)\b|\/gal/i.test(line)){const m=line.match(/\b([\d,]+(?:\.\d{1,3})?)\b/);if(m){const v=n(m[1].replace(/,/g,''));if(v>.1&&v<400)gallons=v;}}
+  if(/\b(price\/gal|per gallon|unit price|price per)\b/i.test(line)){const m=line.match(/\b\$?([1-9]\.\d{2,3})\b/);if(m)unitPrice=n(m[1]);}}
+  if(!amount&&gallons&&unitPrice)amount=round(gallons*unitPrice);
+ }
+ const m=kind==='load'?combined.match(/\b(\d{2,4})\s*(?:paid\s*)?miles\b/i):null;const miles=m?n(m[1]):0;
+ // For POD/BOL, an amount on the paper is not proof of freight pay. Keep zero unless rate confirmation.
+ if(docType==='pod'||docType==='bol')amount=0;
+ return{kind,docType,date,description,amount:round(amount),loadNo,refs:[...new Set(refs)],status:'scheduled',miles,origin,destination,gallons,unitPrice,paidBy:'company',notes:'',anchor:amountResult.anchor,ocrConfidence:round(confidence),credit:0};
+}
+function downloadBlob(name,contents,mime){const blob=new Blob([contents],{type:mime});const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);}
+function exportBackup(){const cloud=window.LEOSCloud?.isActive();const payload={app:'LEOS PhotoBooks',version:5,exportedAt:new Date().toISOString(),starts:'2026-11-01',settings,records,cloudPhotosStoredSeparately:!!cloud,photoBackupNote:cloud?'Images are in private Supabase Storage; the JSON holds image paths, not the original files. Keep receipt backups.':'Local data URL thumbnails are embedded in this JSON.'};downloadBlob(`LEOS_PhotoBooks_Backup_${isoDate()}.json`,JSON.stringify(payload,null,2),'application/json');toast(cloud?'Records exported. Cloud photo files are not included in JSON.':'Full local backup exported, including saved photo thumbnails.');}
+function matchExistingForImport(r){
+ const sameId=records.find(x=>x.id===r.id);
+ if(sameId)return sameId;
+ if(r.kind==='load'){
+   const ids=new Set(loadRefs(r));
+   return records.find(x=>x.kind==='load'&&loadRefs(x).some(v=>ids.has(v)))||null;
+ }
+ if(r.rawText){const sig=documentFingerprint(r.rawText);return records.find(x=>x.kind===r.kind&&x.rawText&&documentFingerprint(x.rawText)===sig)||null;}
+ return null;
+}
+function mergeImportedRecord(existing,original){
+ const result={...existing};
+ for(const key of ['loadNo','pickupDate','deliveryDate','pickupWindow','deliveryWindow','pickupRefs','deliveryRefs','origin','destination','notes','gallons','unitPrice','credit','paidBy','rawText','miles']){
+   if((result[key]===undefined||result[key]===null||result[key]==='')&&original[key]!==undefined)result[key]=original[key];
+ }
+ if(!n(result.amount)&&n(original.amount))result.amount=original.amount;
+ if(result.kind==='load'&&result.status==='scheduled'&&['completed','paid'].includes(original.status)){
+   // An imported backup may have later status, but never assume it: keep saved status.
+   result.notes=(result.notes||'')+' [Imported backup also contained '+original.status+' status; verify before changing.]';
+ }
+ result.photos=[...new Set([...(existing.photos||[]),...(original.photos||[])])].slice(-30);
+ const docs=[...(existing.documents||[])];
+ for(const d of original.documents||[]){if(!docs.some(x=>x.fingerprint&&x.fingerprint===d.fingerprint||x.type===d.type&&x.filename===d.filename&&x.scannedAt===d.scannedAt))docs.push(d);}
+ result.documents=docs.slice(-50);return result;
+}
+async function restoreBackup(file){if(!file)return;try{
+ const payload=JSON.parse(await file.text());
+ if(payload.app!=='LEOS PhotoBooks'||!Array.isArray(payload.records))throw new Error('This is not a LEOS PhotoBooks backup.');
+ if(!confirm(`Import ${payload.records.length} record(s) from an older PhotoBooks backup? Matching loads and receipt images will be merged. Existing load pay and status will be preserved.`))return;
+ let restored=0,merged=0,skipped=0;
+ for(const original of payload.records){
+   if(!original?.id||!original?.kind)continue;
+   if(original.date&&original.date<'2026-11-01'){skipped++;continue;} // Explicit lease-purchase-only boundary.
+   const r={...original};
+   // Cloud paths from another provider or account cannot be accessed. Retain local data URL images.
+   if(window.LEOSCloud?.isActive())r.photos=(r.photos||[]).filter(p=>typeof p==='string'&&(p.startsWith('data:image/')||p.startsWith(`supabase:${LEOSCloud.uid()}/`)));
+   const existing=matchExistingForImport(r);await saveAndRefresh(existing?mergeImportedRecord(existing,r):r);
+   if(existing)merged++;else restored++;
+ }
+ populateMonths();renderAll();
+ toast(`Backup import: ${restored} new, ${merged} merged; ${skipped} pre-November entries excluded.`);
+ }catch(e){toast(e.message||'Restore failed. Please choose a valid PhotoBooks JSON backup.');}
+ finally{$('#restoreInput').value='';}
+}
+window.LEOS_TEST={calc,parseDocument,findAmount,seedLoad,seedSecondLoad,loadRefs,matchLoadRecord,chooseScanResult,hasStarterLoad,migrateStarterLoads,matchExistingForImport,mergeImportedRecord,getRecords:()=>records,openRecord,saveAndRefresh,settings,showTab};
+initialize().catch(err=>{console.error(err);toast('App could not start. Refresh or try a newer browser.');});
+})();
+
+</script>
+</body></html>
