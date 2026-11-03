@@ -1,3 +1,7 @@
+# LEOS PhotoBooks 7.3 — Customer booking and appointments
+
+See [BOOKING.md](BOOKING.md) for setup, privacy, validation and current limits. Includes the trucking draft and free load-board links documented in TRIP_PLANNER.md. Original records and receipts remain untouched. Complete source is LEOS_PhotoBooks_V7_3_Source.zip.
+
 # LEOS PhotoBooks 7.2 — draft trip planner
 
 See [TRIP_PLANNER.md](TRIP_PLANNER.md) for current features, provider activation and limitations. This draft adds BOL photo OCR, reviewed single-leg truck-routing requests, NWS route checkpoints and a manual fuel budget. DAT and live fuel-price APIs are not connected. Automatic whole-trip fuel/driver-hours planning is unfinished. Existing business functionality and original records are preserved. Complete source and 25 tests are in LEOS_PhotoBooks_V7_2_Source.zip.
