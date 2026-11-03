@@ -126,7 +126,7 @@
   <div class="section-heading"><div><p class="kicker">OPERATIONS OVERVIEW</p><h1>You're in control.</h1></div><select id="monthSelect" class="month-select" aria-label="Reporting month"></select></div>
   <div class="hero-card"><div class="hero-top"><span class="hero-label">OPERATING PROFIT <span class="hero-sub">• Recorded to date</span></span><span class="hero-symbol">↗</span></div><div class="hero-amount" id="heroProfit">$0.00</div><div class="hero-bottom"><span id="heroContext">After logged fuel, expenses & charged fees</span><span class="hero-tag" id="heroShareTag">DRIVER LOAD PAY</span></div><div class="hero-decoration"></div></div>
   <div class="metrics"><div class="metric-card"><p>Earned load pay</p><strong id="metricShare">$0.00</strong><small id="metricLoads">0 completed loads</small></div><div class="metric-card"><p>Fuel + expenses</p><strong id="metricCosts">$0.00</strong><small>Excludes the carrier share</small></div><div class="metric-card"><p>Tax reserve target</p><strong id="metricTax">$0.00</strong><small>State + federal budget</small></div><div class="metric-card"><p>Scheduled load pay</p><strong id="metricPending">$0.00</strong><small>Not yet earned</small></div></div>
-  <div class="scan-card"><div class="scan-copy"><div class="scan-icon">▣</div><div><h2>Scan a document</h2><p>Photograph a rate confirmation, delivered POD or settlement. Review the suggested changes and save.</p></div></div><div class="scan-actions"><button id="takePhoto" class="btn primary"><span>◎</span> Take a photo</button><button id="uploadPhoto" class="btn light">Upload image</button></div><p class="scan-note">Rate confirmations · Signed delivery proof · Settlements · Fuel · Receipts</p></div>
+  <div class="scan-card"><div class="scan-copy"><div class="scan-icon">▣</div><div><h2>Scan a document</h2><p>Upload a delivery photo to complete a matching load and update pay and tax targets. Unclear photos need review.</p></div></div><div class="scan-actions"><button id="takePhoto" class="btn primary"><span>◎</span> Take a photo</button><button id="uploadPhoto" class="btn light">Upload image</button></div><p class="scan-note">Rate confirmations · Signed delivery proof · Settlements · Fuel · Receipts</p></div>
   <div class="collection-summary" aria-label="Payment tracking"><div><span>Loads marked paid</span><strong id="metricPaid">$0.00</strong></div><div><span>Load pay awaiting payment</span><strong id="metricUnpaid">$0.00</strong></div></div>
 <section class="home-driver-tools" aria-label="Driver work center"><h2>Driver work center</h2><p>Inspections, maintenance, pay audits, and expiring documents in one private workspace.</p><div id="homeToolsAlerts" class="ops-status">Sign in to view your reminders.</div><div class="home-tool-buttons"><button type="button" data-tool="settlement_audit">⇄ Audit a settlement</button><button type="button" data-tool="inspection">▣ Digital inspection</button><button type="button" data-tool="maintenance">⚙ Maintenance log</button><button type="button" data-tool="document">◷ Expiration reminders</button></div></section>
   <div class="list-section"><div class="row-between"><h2>Recent activity</h2><button class="link-action" data-nav="records">See all →</button></div><div id="recentRecords"></div></div>
@@ -134,7 +134,7 @@
 </section>
 <section class="view" id="view-loads" aria-label="Loads"><div class="section-heading"><div><p class="kicker">FREIGHT REVENUE</p><h1>Your loads</h1></div><button class="small-btn" id="addLoad">+ Add load</button></div>
 
-  <div class="load-photo-actions"><div><strong>Scan to add or finish a load</strong><small>Photo reader matches reference numbers and proposes the next status for review.</small></div><div class="scan-actions"><button class="btn primary" id="loadCamera">◎ Take photo</button><button class="btn light" id="loadUpload">Upload photo</button></div></div><div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="scheduled">Scheduled</button><button class="filter" data-filter="completed">Completed</button><button class="filter" data-filter="paid">Paid</button></div><div id="loadList"></div></section>
+  <div class="load-photo-actions"><div><strong>Scan to add or finish a load</strong><small>Clear delivery photos complete matching saved loads and update pay automatically. Unclear photos need review.</small></div><div class="scan-actions"><button class="btn primary" id="loadCamera">◎ Take photo</button><button class="btn light" id="loadUpload">Upload photo</button></div></div><div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="scheduled">Scheduled</button><button class="filter" data-filter="completed">Completed</button><button class="filter" data-filter="paid">Paid</button></div><div id="loadList"></div></section>
 
 <section class="view" id="view-routes" aria-label="Private fuel route planner">
  <div class="section-heading"><div><p class="kicker">TRUCK ROUTES & FUEL</p><h1>Fuel Savings Planner</h1></div></div>
@@ -286,6 +286,7 @@
 <div id="toast" class="toast" aria-live="polite"></div>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="/photo-policy.js"></script>
 <script>
 /* Public Supabase project URL and publishable client key. No secret keys. */
 window.LEOS_SUPABASE_CONFIG = {
@@ -757,10 +758,18 @@ function normalizeRef(v){return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g
 function loadRefs(r){return [r.loadNo,r.pickupRefs,r.deliveryRefs].join(' ').toUpperCase().match(/\b[A-Z]*\d[A-Z0-9-]{3,}\b/g)?.map(normalizeRef).filter(x=>x.length>=5)||[];}
 function matchingReferenceEvidence(parsed){return [...new Set([parsed.loadNo,...(parsed.refs||[])].map(normalizeRef).filter(x=>x.length>=5))];}
 function matchLoadRecord(parsed,pool=records){const hints=matchingReferenceEvidence(parsed);if(!hints.length)return null;const matches=pool.filter(r=>r.kind==='load'&&loadRefs(r).some(x=>hints.includes(x)));return matches.length===1?matches[0]:null;}
-function chooseScanResult(parsed,text,thumb,file){
+async function chooseScanResult(parsed,text,thumb,file){
  const fingerprint=documentFingerprint(text);
  if(records.some(r=>(r.documents||[]).some(d=>d.fingerprint===fingerprint)||r.kind!=='load'&&r.rawText&&documentFingerprint(r.rawText)===fingerprint)){
    toast('This same document was already saved. No duplicate was created.');return;
+ }
+ const decision=window.LEOSPhotoPolicy.photoDecision({text,confidence:parsed.ocrConfidence,loads:records.filter(r=>r.kind==='load'),pay:loadPay});
+ if(['complete','attach'].includes(decision.action)&&thumb){
+   const saved=decision.load;
+   const rec={...saved,status:decision.action==='complete'?'completed':saved.status,updatedAt:new Date().toISOString(),photos:[...(saved.photos||[]),thumb],documents:[...(saved.documents||[]),{type:'pod',scannedAt:new Date().toISOString(),fingerprint,filename:file.name||'camera-photo'}],rawText:text};
+   try{await saveAndRefresh(rec);selectedMonth=String(saved.date||isoDate()).slice(0,7);populateMonths();renderAll();toast(decision.action==='complete'?'Photo saved. Load completed; earned pay, awaiting payment, profit and tax reserve updated.':'Photo attached. Existing completed/paid status and pay preserved.');}
+   catch(error){openRecord(rec,'load','Automatic save failed: '+String(error.message||error)+'. Review and retry; completion has not been confirmed.');}
+   return;
  }
  const matched=matchLoadRecord(parsed);
  const doc={type:parsed.docType,scannedAt:new Date().toISOString(),fingerprint,filename:file.name||'camera-photo'};
@@ -792,20 +801,19 @@ function chooseScanResult(parsed,text,thumb,file){
  const reason=parsed.kind==='load'?'New load photo: review gross rate, pickup/delivery, mileage and references. Save to add this load; it will remain Scheduled until you confirm delivery.':'Review the extracted amount and details. Nothing is added until you tap Save record.';
  openRecord(rec,rec.kind,reason);
 }
-// Multiple uploaded images are processed one by one. Each OCR result is reviewed before saving;
-// no scan can silently change pay, paid status, or load delivery status.
+// Clear matched delivery photos save automatically; uncertain results require review. Never infer payment.
 async function handlePhotos(fileList){
  const files=Array.from(fileList||[]).filter(f=>f.type.startsWith('image/'));
  $('#cameraInput').value='';$('#galleryInput').value='';
  if(!files.length){toast('Select a JPG or PNG receipt / load photo.');return;}
  photoQueue.push(...files);
- if(files.length>1)toast(`${files.length} photos queued; review and save each one to continue.`);
+ if(files.length>1)toast(`${files.length} photos queued; clear delivery matches save automatically, others need review.`);
  if(!$('#recordDialog').open)await scanNextQueued();
 }
 async function scanNextQueued(){
  if(scanningPhoto||$('#recordDialog').open||!photoQueue.length)return;
  scanningPhoto=true;cancelScan=false;
- const file=photoQueue.shift();
+ const file=photoQueue.shift(),scanUid=window.LEOSCloud?.uid?.()||null;
  toggleScan(true,'Reading your photo',`${photoQueue.length} more photo(s) queued for review`,8);
  try{
    if(!window.Tesseract)throw new Error('Photo reader unavailable. The picture can still be saved with manual details.');
@@ -814,7 +822,8 @@ async function scanNextQueued(){
    const text=result.data.text||'',confidence=Number(result.data.confidence||0);
    if(!text.trim())throw new Error('Could not read the text. Save the photo and enter the details manually.');
    const thumb=await compressPhoto(file),parsed=parseDocument(text,confidence);toggleScan(false);
-   chooseScanResult(parsed,text,thumb,file);
+   if(scanUid!==(window.LEOSCloud?.uid?.()||null)){toast('Account changed. Upload this photo again in the correct account.');return;}
+   await chooseScanResult(parsed,text,thumb,file);
  }catch(e){
    toggleScan(false);
    if(!cancelScan){
