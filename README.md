@@ -1,3 +1,17 @@
+# LEOS PhotoBooks 7.1 — General Business and Tax Center
+
+This release adds General Business, Services, Retail and Projects modes alongside Trucking. Existing companies keep their current trucking view until an owner changes Business type in Settings. New companies choose a business type during onboarding.
+
+New features: business profile and structure view; staff role with assignment isolation; income and owner-contribution records; invoices and bills; atomic full-payment recording with one linked financial entry; monthly performance and recorded cash-movement summaries; manual business budgets; tax-year payment tracking, expense review queue, missing-attachment count, custom tax deadlines and accountant CSV export.
+
+Tax features organize records only. They do not determine deductions or tax liability, file returns, move money or pay taxes. No universal estimated-tax deadline is assumed. Tax reference links point to IRS guidance. Entity labels and fiscal-year settings are self-reported information, not legal or tax verification. Tax-year views use calendar-year operating summaries for savings targets.
+
+Invoice/bill payment recording is for a full payment already completed outside the app. Repeating a request returns the same linked entry. Paid documents and linked payment entries are locked; partial payments, invoice delivery and payment collection are not enabled.
+
+General-business modes hide trucking navigation but never delete existing trucking records. Payment processing remains disabled.
+
+The remaining 7.0 foundation and sandbox setup are documented below.
+
 # LEOS PhotoBooks 7.0 — company platform, early access
 
 Production host: https://leos-photobooks.onrender.com
