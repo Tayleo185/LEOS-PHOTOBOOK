@@ -9,6 +9,7 @@ Implemented:
 - NWS hourly forecasts covering estimated arrival at five approximate route checkpoints, active alerts, timestamps and explicit per-checkpoint failures. US coverage, drive-time estimates only. Not a continuous corridor hazard guarantee.
 - Manual fuel budget and price comparison with detour fuel cost. No fabricated station data or claimed live prices.
 - Save a scheduled company load and attach the photo through existing private company storage. Driver assignment is done from Loads. Original personal records, receipts, settings and tables are untouched.
+- Free carrier access links for Trucker Path TruckLoads, Trulos, and Amazon Relay (approved carriers only). These are external links, not aggregated listings. Free access checked against official provider pages on November 3, 2026.
 - DAT One / Truckstop external account links. DAT selected by the user; no live listings or booking API are enabled.
 
 Activation still required:
