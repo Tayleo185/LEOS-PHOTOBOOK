@@ -286,7 +286,7 @@
 <div id="toast" class="toast" aria-live="polite"></div>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="/photo-policy.js"></script>
+<script src="/photo-policy78.js"></script>
 <script>
 /* Public Supabase project URL and publishable client key. No secret keys. */
 window.LEOS_SUPABASE_CONFIG = {
@@ -771,7 +771,7 @@ async function chooseScanResult(parsed,text,thumb,file){
    catch(error){openRecord(rec,'load','Automatic save failed: '+String(error.message||error)+'. Review and retry; completion has not been confirmed.');}
    return;
  }
- const matched=matchLoadRecord(parsed);
+ const matched=decision.load||matchLoadRecord(parsed);
  const doc={type:parsed.docType,scannedAt:new Date().toISOString(),fingerprint,filename:file.name||'camera-photo'};
  const photo=thumb?[thumb]:[];
  if(matched){
